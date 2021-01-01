@@ -5,11 +5,11 @@
       :rules="emailRules"
       :label="$t('subscribe-form.email')"
       required
-      @blur="checkToValidate"
       outlined
+      @blur="checkToValidate"
     ></v-text-field>
 
-    <v-btn color="grey darken-4 white--text" @click="submitForm" large>
+    <v-btn color="grey darken-4 white--text" large @click="submitForm">
       {{ $t('subscribe-form.subscribe') }}
     </v-btn>
   </v-form>
