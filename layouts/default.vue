@@ -1,6 +1,7 @@
 <template>
   <v-app id="inspire">
-    <Navigation />
+    <AppBar />
+    <NavigationDrawer />
     <v-main>
       <v-container>
         <v-row>
@@ -15,12 +16,14 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation'
+import AppBar from '@/components/AppBar'
+import NavigationDrawer from '@/components/NavigationDrawer'
 import Footer from '@/components/Footer'
 
 export default {
   components: {
-    Navigation,
+    AppBar,
+    NavigationDrawer,
     Footer,
   },
 }

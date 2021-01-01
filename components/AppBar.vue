@@ -1,6 +1,9 @@
 <template>
-  <v-app-bar app shrink-on-scroll class="black" v-scroll="onScroll">
-    <v-app-bar-nav-icon class="hidden-md-and-up"></v-app-bar-nav-icon>
+  <v-app-bar v-scroll="onScroll" app shrink-on-scroll>
+    <v-app-bar-nav-icon
+      class="hidden-lg-and-up"
+      @click="toggleNavigationDrawer"
+    ></v-app-bar-nav-icon>
 
     <v-toolbar-title class="my-auto pl-0">
       <v-img
@@ -18,24 +21,43 @@
       <v-icon>mdi-dots-vertical</v-icon>
     </v-btn>
     <template v-slot:extension>
-      <v-tabs align-with-title>
-        <v-tab>Tab 1</v-tab>
-        <v-tab>Tab 2</v-tab>
-        <v-tab>Tab 3</v-tab>
-      </v-tabs>
+      <v-row class="justify-center hidden-md-and-down">
+        <v-btn
+          v-for="(item, index) in categories"
+          :key="index"
+          small
+          text
+          class="mx-1"
+          >{{ item }}</v-btn
+        >
+      </v-row>
     </template>
   </v-app-bar>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 const DEFAULT_DIAMENSIONS = 150
+
 export default {
   data() {
     return {
       imageDimensions: DEFAULT_DIAMENSIONS,
+      categories: [
+        'One Category',
+        'Two Category',
+        'Three Category',
+        'Four Category',
+        'Five Category',
+        'Six Category',
+        'Seven Category',
+      ],
     }
   },
   methods: {
+    ...mapMutations({
+      toggleNavigationDrawer: 'ui/toggleNavigationDrawer',
+    }),
     onScroll() {
       if (window.pageYOffset > 90) {
         this.imageDimensions = 60
@@ -49,6 +71,6 @@ export default {
 
 <style lang="scss" scoped>
 .v-image {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 </style>
