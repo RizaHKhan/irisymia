@@ -18,8 +18,11 @@ export default {
   css: [],
   plugins: [],
   components: true,
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', '@nuxtjs/prismic'],
   modules: ['nuxt-i18n'],
+  prismic: {
+    endpoint: 'https://cdn.prismic.io/api/v2',
+  },
   i18n: {
     locales: ['en', 'es', 'fr'],
     defaultLocale: 'en',
@@ -35,10 +38,10 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.grey.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
