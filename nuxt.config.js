@@ -17,7 +17,7 @@ export default {
   plugins: [],
   components: true,
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', '@nuxtjs/prismic'],
-  modules: ['nuxt-i18n'],
+  modules: ['nuxt-i18n', '@nuxtjs/axios'],
   prismic: {
     endpoint: process.env.PRISMIC_ENDPOINT,
   },
