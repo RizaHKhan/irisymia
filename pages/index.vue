@@ -28,5 +28,10 @@
 </template>
 
 <script>
-export default {}
+export default {
+  async asyncData({ $prismic, params, error }) {
+    const document = await $prismic.api
+    console.log(document)
+  },
+}
 </script>
