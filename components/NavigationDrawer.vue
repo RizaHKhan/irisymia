@@ -1,8 +1,10 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
-    v-click-outside="toggleNavigationDrawerIfTrue"
+    v-if="drawer"
+    v-click-outside="drawer ? toggleNavigationDrawer : ''"
+    :value="drawer"
     absolute
+    clipped
     temporary
   >
     <v-list-item>
@@ -32,7 +34,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -43,19 +45,14 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      drawer: 'ui/navigationBar',
-    }),
+    drawer() {
+      return this.$store.state.ui.navigationBar
+    },
   },
   methods: {
     ...mapMutations({
       toggleNavigationDrawer: 'ui/toggleNavigationDrawer',
     }),
-    toggleNavigationDrawerIfTrue() {
-      if (this.drawer) {
-        this.toggleNavigationDrawer()
-      }
-    },
   },
 }
 </script>
