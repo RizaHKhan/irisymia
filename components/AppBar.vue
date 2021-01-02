@@ -1,16 +1,15 @@
 <template>
-  <v-app-bar v-scroll="onScroll" class="grey darken-4" app shrink-on-scroll>
+  <v-app-bar class="grey darken-4" app shrink-on-scroll>
     <v-app-bar-nav-icon
       class="hidden-lg-and-up white--text"
       @click="toggleNavigationDrawer"
     ></v-app-bar-nav-icon>
 
-    <v-toolbar-title class="ma-auto">
+    <v-toolbar-title class="ma-auto pa-0">
       <v-img
         src="/logo_transparent.png"
         contain
-        :height="imageDimensions"
-        :width="imageDimensions"
+        height="100%"
         class="my-auto"
       ></v-img>
     </v-toolbar-title>
@@ -35,12 +34,10 @@
 
 <script>
 import { mapMutations } from 'vuex'
-const DEFAULT_DIMENSIONS = 200
 
 export default {
   data() {
     return {
-      imageDimensions: DEFAULT_DIMENSIONS,
       categories: [
         'One Category',
         'Two Category',
@@ -56,13 +53,6 @@ export default {
     ...mapMutations({
       toggleNavigationDrawer: 'ui/toggleNavigationDrawer',
     }),
-    onScroll() {
-      if (window.pageYOffset > 90) {
-        this.imageDimensions = 60
-      } else {
-        this.imageDimensions = DEFAULT_DIMENSIONS
-      }
-    },
   },
 }
 </script>
@@ -70,5 +60,9 @@ export default {
 <style lang="scss" scoped>
 .v-image {
   transition: all 0.1s ease;
+}
+
+.v-toolbar__title {
+  height: 100%;
 }
 </style>
