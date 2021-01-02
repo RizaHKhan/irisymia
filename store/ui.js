@@ -1,5 +1,5 @@
 export const state = () => ({
-  navigationBar: false,
+  navigationBar: true,
 })
 
 export const mutations = {
@@ -7,8 +7,6 @@ export const mutations = {
     state.navigationBar = !state.navigationBar
   },
 }
-
-export const actions = {}
 
 export const getters = {
   navigationBarState: (state) => state.navigationBar,
