@@ -1,5 +1,5 @@
 export const state = () => ({
-  navigationBar: true,
+  navigationBar: false,
 })
 
 export const mutations = {
