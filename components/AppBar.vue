@@ -22,6 +22,7 @@
         <v-btn
           v-for="(item, index) in categories"
           :key="index"
+          :to="`/${item}`"
           small
           text
           class="mx-1 white--text"
@@ -33,23 +34,13 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
-  data() {
-    return {
-      categories: [
-        'One Category',
-        'Two Category',
-        'Three Category',
-        'Four Category',
-        'Five Category',
-        'Six Category',
-        'Seven Category',
-      ],
-    }
-  },
   computed: {
+    ...mapGetters({
+      categories: 'categories/GET_CATEGORIES',
+    }),
     showTemplate() {
       switch (this.$vuetify.breakpoint.name) {
         case 'xs':
@@ -67,7 +58,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      toggleNavigationDrawer: 'ui/toggleNavigationDrawer',
+      toggleNavigationDrawer: 'ui/TOGGLE_NAVIGATIONDRAWER',
     }),
   },
 }

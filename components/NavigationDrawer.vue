@@ -19,13 +19,9 @@
     <v-divider></v-divider>
 
     <v-list dense>
-      <v-list-item v-for="item in items" :key="item.title" link>
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-
+      <v-list-item v-for="(category, i) in categories" :key="i" link>
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title>{{ category }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -33,24 +29,19 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
-  data() {
-    return {
-      items: [
-        { title: 'Home', icon: 'mdi-view-dashboard' },
-        { title: 'About', icon: 'mdi-forum' },
-      ],
-    }
-  },
   computed: {
+    ...mapGetters({
+      categories: 'categories/GET_CATEGORIES',
+    }),
     drawer() {
       return this.$store.state.ui.navigationBar
     },
   },
   methods: {
     ...mapMutations({
-      toggleNavigationDrawer: 'ui/toggleNavigationDrawer',
+      toggleNavigationDrawer: 'ui/TOGGLE_NAVIGATIONDRAWER',
     }),
   },
 }
