@@ -3,8 +3,7 @@
     v-if="drawer"
     v-click-outside="drawer ? toggleNavigationDrawer : ''"
     :value="drawer"
-    absolute
-    clipped
+    fixed
     temporary
   >
     <v-list-item>
