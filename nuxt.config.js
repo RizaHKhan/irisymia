@@ -19,7 +19,7 @@ export default {
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', '@nuxtjs/prismic'],
   modules: ['nuxt-i18n'],
   prismic: {
-    endpoint: 'https://cdn.prismic.io/api/v2',
+    endpoint: process.env.PRISMIC_ENDPOINT,
   },
   i18n: {
     locales: ['es'],
