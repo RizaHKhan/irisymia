@@ -8,6 +8,7 @@
       </v-container>
       <Footer />
     </v-main>
+    <LoadingOverlay />
   </v-app>
 </template>
 
@@ -15,12 +16,14 @@
 import AppBar from '@/components/AppBar'
 import NavigationDrawer from '@/components/NavigationDrawer'
 import Footer from '@/components/Footer'
+import LoadingOverlay from '@/components/LoadingOverlay'
 
 export default {
   components: {
     AppBar,
     NavigationDrawer,
     Footer,
+    LoadingOverlay,
   },
 }
 </script>
