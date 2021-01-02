@@ -1,6 +1,4 @@
 import colors from 'vuetify/es5/util/colors'
-import en from './locales/en.json'
-import fr from './locales/fr.json'
 import es from './locales/es.json'
 
 export default {
@@ -24,13 +22,11 @@ export default {
     endpoint: 'https://cdn.prismic.io/api/v2',
   },
   i18n: {
-    locales: ['en', 'es', 'fr'],
-    defaultLocale: 'en',
+    locales: ['es'],
+    defaultLocale: 'es',
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: 'es',
       messages: {
-        en,
-        fr,
         es,
       },
     },

@@ -1,3 +1,29 @@
 {
-  "hello": "Aloha"
+  "navigation": {
+    "title": "Irisymia"
+  },
+  "footer": {
+    "navigate": {
+      "title": "Navigate",
+      "blog": "Blog",
+      "sitemap": "Sitemap"
+    },
+    "categories": {
+      "title": "Categories"
+    },
+    "info": {
+      "title": "Info",
+      "one": "<p class='text-caption'>Recureda realizar tu pedido con al menos 48 horas de antelacion</p>",
+      "two": "<p class='text-caption'><strong>Enviamos gratis a </strong>Barcelona, Cadalona, Hospitalet, Dt.Adria</p>",
+      "three": "<p class='text-caption'><strong>Quieres enviar furera de esas zonas?</strong>Estaremos encantadas de encontrarte una solucion...</p>"
+    },
+    "subscribe": {
+      "title": "Subscribe to our newsletter",
+      "subtitle": "Get the latest updates on new products and upcoming sales"
+    }
+  },
+  "subscribe-form": {
+    "subscribe": "Subscribe",
+    "email": "Email"
+  }
 }
