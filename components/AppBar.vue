@@ -17,7 +17,7 @@
     <v-btn icon>
       <v-icon class="white--text">mdi-dots-vertical</v-icon>
     </v-btn>
-    <template v-slot:extension>
+    <template v-if="showTemplate" v-slot:extension>
       <v-row class="justify-center hidden-md-and-down">
         <v-btn
           v-for="(item, index) in categories"
@@ -49,6 +49,22 @@ export default {
       ],
     }
   },
+  computed: {
+    showTemplate() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          return false
+        case 'sm':
+          return false
+        case 'md':
+          return false
+        case 'lg':
+          return true
+        default:
+          return true
+      }
+    },
+  },
   methods: {
     ...mapMutations({
       toggleNavigationDrawer: 'ui/toggleNavigationDrawer',
@@ -57,7 +73,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .v-image {
   transition: all 0.1s ease;
 }
