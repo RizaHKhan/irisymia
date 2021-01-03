@@ -28,10 +28,12 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData({ params, store }) {
+  async asyncData({ params, store, redirect }) {
     try {
       await store.dispatch('products/GET_PRODUCT', params.product)
-    } catch (e) {}
+    } catch (e) {
+      redirect('/')
+    }
   },
   data() {
     return {

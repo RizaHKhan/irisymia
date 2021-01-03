@@ -1,10 +1,15 @@
 <template>
   <v-layout wrap>
-    <ProductCard
-      v-for="product in products"
-      :key="product.id"
-      :product="product"
-    />
+    <v-row v-for="category in categories" :key="category">
+      <h1>{{ category }}</h1>
+      <v-layout wrap>
+        <ProductCard
+          v-for="product in products.filter((p) => p.category === category)"
+          :key="product.id"
+          :product="product"
+        />
+      </v-layout>
+    </v-row>
   </v-layout>
 </template>
 

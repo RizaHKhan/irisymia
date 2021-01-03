@@ -37,18 +37,24 @@ export const actions = {
         })
     })
   },
-  async GET_PRODUCT({ commit }, product) {
-    commit('ui/LOADING_TRUE', null, { root: true })
-    try {
+  GET_PRODUCT({ commit }, product) {
+    return new Promise((resolve, reject) => {
+      commit('ui/LOADING_TRUE', null, { root: true })
       const url = `https://fakestoreapi.com/products/${product}`
-      const response = await this.$axios.$get(url)
-      console.log(response)
+      this.$axios
+        .$get(url)
+        .then((res) => {
+          if (!res) reject(new Error('No Data Found'))
 
-      commit('SET_PRODUCT', response)
-      commit('ui/LOADING_FALSE', null, { root: true })
-    } catch (e) {
-      commit('ui/LOADING_FALSE')
-    }
+          commit('SET_PRODUCT', res)
+          commit('ui/LOADING_FALSE', null, { root: true })
+          resolve()
+        })
+        .catch((e) => {
+          commit('ui/LOADING_FALSE', null, { root: true })
+          reject(new Error(e))
+        })
+    })
   },
 }
 export const getters = {
