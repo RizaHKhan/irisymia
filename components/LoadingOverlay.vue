@@ -9,7 +9,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      loading: 'ui/loadingState',
+      loading: 'ui/GET_LOADING_STATE',
     }),
   },
 }

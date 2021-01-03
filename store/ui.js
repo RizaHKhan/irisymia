@@ -16,6 +16,6 @@ export const mutations = {
 }
 
 export const getters = {
-  navigationBarState: (state) => state.navigationBar,
-  loadingState: (state) => state.loading,
+  GET_NAVIGATION_STATE: (state) => state.navigationBar,
+  GET_LOADING_STATE: (state) => state.loading,
 }

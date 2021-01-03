@@ -23,6 +23,7 @@ export const actions = {
         url = `https://fakestoreapi.com/products/category/${category}`
       }
       const response = await this.$axios.$get(url)
+      console.log('response from products store', response)
 
       if (!response.length) throw new Error('Category Not Found')
 
