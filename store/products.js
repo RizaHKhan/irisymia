@@ -13,26 +13,29 @@ export const mutations = {
 }
 
 export const actions = {
-  async GET_PRODUCTS({ commit }, category) {
-    commit('ui/LOADING_TRUE', null, { root: true })
-    try {
+  GET_PRODUCTS({ commit }, category) {
+    return new Promise((resolve, reject) => {
+      commit('ui/LOADING_TRUE', null, { root: true })
       let url
       if (!category) {
         url = 'https://fakestoreapi.com/products'
       } else {
         url = `https://fakestoreapi.com/products/category/${category}`
       }
-      const response = await this.$axios.$get(url)
-      console.log('response from products store', response)
+      this.$axios
+        .$get(url)
+        .then((res) => {
+          if (!res.length) reject(new Error('No Data Found'))
 
-      if (!response.length) throw new Error('Category Not Found')
-
-      commit('SET_PRODUCTS', response)
-      commit('ui/LOADING_FALSE', null, { root: true })
-    } catch (e) {
-      commit('ui/LOADING_FALSE', null, { root: true })
-      return e
-    }
+          commit('SET_PRODUCTS', res)
+          commit('ui/LOADING_FALSE', null, { root: true })
+          resolve()
+        })
+        .catch((e) => {
+          commit('ui/LOADING_FALSE', null, { root: true })
+          reject(new Error(e))
+        })
+    })
   },
   async GET_PRODUCT({ commit }, product) {
     commit('ui/LOADING_TRUE', null, { root: true })

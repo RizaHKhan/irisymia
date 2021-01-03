@@ -16,12 +16,12 @@ export default {
   components: {
     ProductCard,
   },
-  async asyncData({ params, store }) {
+  async asyncData({ params, store, redirect }) {
     try {
       await store.dispatch('categories/GET_CATEGORIES')
       await store.dispatch('products/GET_PRODUCTS', params.category)
     } catch (e) {
-      console.log('error from asynData', e)
+      redirect('/')
     }
   },
   computed: {
