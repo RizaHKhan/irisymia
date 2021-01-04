@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto my-12" max-width="374">
-    <v-img height="250" :src="product.image"></v-img>
+    <nuxt-image height="250" :src="product.image"></nuxt-image>
 
     <v-card-title>{{ product.title }}</v-card-title>
 
