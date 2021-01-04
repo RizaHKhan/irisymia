@@ -1,27 +1,22 @@
 <template>
-  <v-card class="mx-auto" max-width="344">
-    <v-img :src="product.image" height="200px"></v-img>
-
-    <v-card-title>{{ product.title }}</v-card-title>
-
-    <v-card-actions>
-      <v-btn color="orange lighten-2" text> Explore </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon @click="show = !show">
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>{{ product.description }}</v-card-text>
-      </div>
-    </v-expand-transition>
-  </v-card>
+  <v-row class="my-10">
+    <v-col cols="12" md="6">
+      <v-carousel :show-arrows="false">
+        <v-carousel-item :src="product.image"></v-carousel-item>
+      </v-carousel>
+    </v-col>
+    <v-col cols="12" md="6">
+      <p class="text-lg-h2 text-h4 font-weight-thin">
+        {{ product.title }}
+      </p>
+      <p class="text-body-1 font-weight-light">
+        {{ product.description }}
+      </p>
+      <v-btn class="success float-right">{{
+        $t('product-page.add-to-cart')
+      }}</v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -47,5 +42,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

@@ -1,11 +1,11 @@
 <template>
   <v-footer padless>
-    <v-row justify="center" no-gutters>
-      <v-col xs="6" sm="6" md="2">
+    <v-layout justify="center" wrap no-gutters>
+      <v-col cols="12" md="4" sm="6" lg="2">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
-              class="mb-3 text-subtitle-1 text-center font-weight-thin"
+              class="mb-3 text-subtitle-1 text-center font-weight-light grey--text"
               >{{ $t('footer.navigate.title') }}</v-list-item-title
             >
             <v-btn
@@ -20,11 +20,11 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col xs="6" sm="6" md="2">
+      <v-col>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
-              class="mb-3 text-subtitle-1 text-center font-weight-thin"
+              class="mb-3 text-subtitle-1 text-center font-weight-light grey--text"
               >{{ $t('footer.categories.title') }}</v-list-item-title
             >
             <v-btn
@@ -39,14 +39,15 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col cols="12" sm="6" md="2">
+      <v-col cols="12" md="3">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
-              class="mb-3 text-subtitle-1 font-weight-thin text-center"
+              class="mb-3 text-subtitle-1 font-weight-light text-md-center text-sm-left grey--text"
               >{{ $t('footer.info.title') }}</v-list-item-title
             >
             <v-list-item
+              class="pa-0"
               v-for="(item, index) in info"
               :key="index"
               v-html="item.title"
@@ -54,12 +55,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col cols="12" sm="6" md="3">
+      <v-col>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="mb-3 text-subtitle-1 font-weight-thin">{{
-              $t('footer.subscribe.title')
-            }}</v-list-item-title>
+            <v-list-item-title
+              class="mb-3 text-subtitle-1 font-weight-light grey--text"
+              >{{ $t('footer.subscribe.title') }}</v-list-item-title
+            >
             <v-list-item class="text-caption pa-0">
               {{ $t('footer.subscribe.subtitle') }}
             </v-list-item>
@@ -67,7 +69,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-    </v-row>
+    </v-layout>
   </v-footer>
 </template>
 

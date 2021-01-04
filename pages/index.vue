@@ -1,7 +1,13 @@
 <template>
   <v-layout wrap>
     <v-row v-for="category in categories" :key="category">
-      <h1>{{ category }}</h1>
+      <v-row class="mt-5">
+        <v-col>
+          <h1 class="text-h3 font-weight-thin">
+            {{ category.charAt(0).toUpperCase() + category.slice(1) }}
+          </h1>
+        </v-col>
+      </v-row>
       <v-layout wrap>
         <ProductCard
           v-for="product in products.filter((p) => p.category === category)"
@@ -22,10 +28,15 @@ export default {
     ProductCard,
   },
   async asyncData({ store }) {
-    try {
-      await store.dispatch('categories/GET_CATEGORIES')
-      await store.dispatch('products/GET_PRODUCTS')
-    } catch (e) {}
+    const products = store.getters['products/GET_PRODUCTS']
+    const categories = store.getters['categories/GET_CATEGORIES']
+
+    if (!products.length && !categories.length) {
+      try {
+        await store.dispatch('categories/GET_CATEGORIES')
+        await store.dispatch('products/GET_PRODUCTS')
+      } catch (e) {}
+    }
   },
   computed: {
     ...mapGetters({

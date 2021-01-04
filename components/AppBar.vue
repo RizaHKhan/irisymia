@@ -17,6 +17,16 @@
     <v-btn icon>
       <v-icon class="white--text">mdi-dots-vertical</v-icon>
     </v-btn>
+    <v-btn icon to="/cart">
+      <v-badge
+        color="success"
+        :value="cartLength"
+        :content="cartLength"
+        overlap
+      >
+        <v-icon class="white--text">mdi-cart</v-icon>
+      </v-badge>
+    </v-btn>
     <template v-if="showTemplate" v-slot:extension>
       <v-row class="justify-center hidden-md-and-down">
         <v-btn
@@ -40,6 +50,7 @@ export default {
   computed: {
     ...mapGetters({
       categories: 'categories/GET_CATEGORIES',
+      cartLength: 'cart/GET_CART_LENGTH',
     }),
     showTemplate() {
       switch (this.$vuetify.breakpoint.name) {

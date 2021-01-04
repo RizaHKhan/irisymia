@@ -25,5 +25,8 @@
   "subscribe-form": {
     "subscribe": "Subscribe",
     "email": "Email"
+  },
+  "product-page": {
+    "add-to-cart": "Add To Cart"
   }
 }
