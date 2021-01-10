@@ -12,15 +12,17 @@
       <p class="text-body-1 font-weight-light">
         {{ product.description }}
       </p>
-      <v-btn class="success float-right">{{
-        $t('product-page.add-to-cart')
-      }}</v-btn>
+      <v-btn
+        class="success float-right"
+        @click="addMessage(`Message ${num++}`)"
+        >{{ $t('product-page.add-to-cart') }}</v-btn
+      >
     </v-col>
   </v-row>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   async asyncData({ params, store, redirect }) {
@@ -33,11 +35,17 @@ export default {
   data() {
     return {
       show: false,
+      num: 0,
     }
   },
   computed: {
     ...mapGetters({
       product: 'products/GET_PRODUCT',
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      addMessage: 'ui/ADD_MESSAGE_TO_SNACKBAR',
     }),
   },
 }

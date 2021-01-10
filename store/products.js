@@ -53,5 +53,6 @@ export const actions = {
 }
 export const getters = {
   GET_PRODUCTS: (state) => state.products,
+  GET_PRODUCTS_BY_CATEGORY: (state) => state.products,
   GET_PRODUCT: (state) => state.product,
 }

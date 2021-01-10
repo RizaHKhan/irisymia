@@ -20,8 +20,6 @@ export const actions = {
         'https://dummyapi.io/data/api/post'
       )
 
-      console.log(response)
-
       commit('SET_BLOGS', response)
       commit('ui/LOADING_FALSE', null, { root: true })
     } catch (e) {

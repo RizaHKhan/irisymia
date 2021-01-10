@@ -9,6 +9,7 @@
       <Footer />
     </v-main>
     <LoadingOverlay />
+    <Snackbar />
   </v-app>
 </template>
 
@@ -17,9 +18,11 @@ import AppBar from '@/components/AppBar'
 import NavigationDrawer from '@/components/NavigationDrawer'
 import Footer from '@/components/Footer'
 import LoadingOverlay from '@/components/LoadingOverlay'
+import Snackbar from '@/components/Snackbar'
 
 export default {
   components: {
+    Snackbar,
     AppBar,
     NavigationDrawer,
     Footer,
