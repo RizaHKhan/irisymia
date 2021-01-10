@@ -32,7 +32,13 @@
             </v-card-text>
 
             <v-card-actions>
-              <v-btn class="ml-auto" color="orange" text>Read More</v-btn>
+              <v-btn
+                class="ml-auto"
+                color="orange"
+                text
+                :to="`/blog/${blog.uid}`"
+                >{{ $t('blog.read-more') }}</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-col>

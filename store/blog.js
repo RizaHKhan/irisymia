@@ -28,6 +28,17 @@ export const actions = {
       throw e
     }
   },
+  async GET_BLOG({ commit }, uid) {
+    commit('ui/LOADING_TRUE', null, { root: true })
+    try {
+      const blog = await this.$prismic.api.getByUID('blog_post', uid)
+      commit('SET_BLOG', blog.data)
+      commit('ui/LOADING_FALSE', null, { root: true })
+    } catch (e) {
+      commit('ui/LOADING_FALSE', null, { root: true })
+      throw e
+    }
+  },
 }
 export const getters = {
   GET_BLOGS: (state) => state.blogs,

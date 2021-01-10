@@ -31,6 +31,7 @@
   },
   "blog": {
     "title": "Blog",
-    "created-on": "Created On"
+    "created-on": "Created On",
+    "read-more": "Read More"
   }
 }
