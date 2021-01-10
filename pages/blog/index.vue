@@ -32,12 +32,10 @@
             </v-card-text>
 
             <v-card-actions>
-              <v-btn
-                class="ml-auto"
-                color="orange"
-                text
-                :to="`/blog/${blog.uid}`"
-                >{{ $t('blog.read-more') }}</v-btn
+              <nuxt-link :to="`/blog/${blog.uid}`">
+                <v-btn class="ml-auto" color="orange" text>{{
+                  $t('blog.read-more')
+                }}</v-btn></nuxt-link
               >
             </v-card-actions>
           </v-card>
@@ -72,3 +70,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+a {
+  text-decoration: none;
+}
+</style>
