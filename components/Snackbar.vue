@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar v-model="snackbar" color="success">
+  <v-snackbar v-model="snackbar" :color="color">
     {{ message }}
     <template v-slot:action="{ attrs }">
       <v-btn color="black" v-bind="attrs" @click="snackbar = false">
@@ -16,6 +16,7 @@ export default {
   data: () => ({
     snackbar: false,
     message: '',
+    color: '',
   }),
   computed: {
     ...mapGetters({
@@ -45,7 +46,10 @@ export default {
     checkForMoreMessages() {
       if (this.messages.length) {
         this.snackbar = true
-        this.message = this.messages[0]
+        const { message, color } = this.messages[0]
+        this.message = message
+        this.color = color
+
         this.removeMessage()
       }
     },
