@@ -15,6 +15,10 @@
       <template v-else-if="slice.type === 'image_with_caption'">
         <image-caption-slice :slice="slice"></image-caption-slice>
       </template>
+
+      <template v-else-if="slice.type === 'o-list-item'">
+        <list-slice :slice="slice"></list-slice>
+      </template>
     </section>
   </section>
 </template>
@@ -23,6 +27,7 @@
 // Imports for all slices
 import QuoteSlice from '@/components/slices/QuoteSlice.vue'
 import TextSlice from '@/components/slices/TextSlice.vue'
+import ListSlice from '@/components/slices/ListSlice.vue'
 import ImageCaptionSlice from '@/components/slices/ImageCaptionSlice.vue'
 
 export default {
@@ -32,6 +37,7 @@ export default {
     QuoteSlice,
     TextSlice,
     ImageCaptionSlice,
+    ListSlice,
   },
 }
 </script>

@@ -1,13 +1,17 @@
 <template>
   <div class="post-part single container">
     <!-- <prismic-rich-text class="textslice" :field="slice.text" /> -->
-    <p class="textslice">{{ slice.text }}</p>
+    <ol class="textslice">
+      {{
+        slice.text
+      }}
+    </ol>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'text-slice',
+  name: 'list-slice',
   props: ['slice'],
 }
 </script>

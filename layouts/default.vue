@@ -3,7 +3,7 @@
     <AppBar />
     <NavigationDrawer />
     <v-main>
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
       <Footer />

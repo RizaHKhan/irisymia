@@ -1,7 +1,7 @@
 <template>
   <v-footer padless>
-    <v-layout justify="center" wrap no-gutters>
-      <v-col cols="12" md="4" sm="6" lg="2">
+    <v-layout justify-center wrap>
+      <v-col cols="12" sm="6" md="2" lg="2">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
@@ -20,7 +20,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col>
+      <v-col cols="12" sm="6" md="3" lg="3" xl="2">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
@@ -39,7 +39,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12" sm="6" md="6" lg="3">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
@@ -47,15 +47,15 @@
               >{{ $t('footer.info.title') }}</v-list-item-title
             >
             <v-list-item
-              class="pa-0"
               v-for="(item, index) in info"
               :key="index"
+              class="pa-0"
               v-html="item.title"
             ></v-list-item>
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col>
+      <v-col cols="12" sm="6" md="6" lg="3">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
