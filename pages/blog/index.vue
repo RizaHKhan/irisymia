@@ -15,9 +15,11 @@
 
 <script>
 export default {
-  asyncData({ store }) {
+  async asyncData({ store, $prismic }) {
     try {
+      console.log($prismic)
       store.commit('ui/LOADING_FALSE')
+      await store.dispatch('blog/GET_BLOGS')
     } catch (e) {}
   },
 }

@@ -14,15 +14,24 @@ export const mutations = {
 
 export const actions = {
   async GET_BLOGS({ commit }) {
+    console.log('called')
     commit('ui/LOADING_TRUE', null, { root: true })
     try {
-      const response = await this.$axios.$get(
-        'https://dummyapi.io/data/api/post'
-      )
+      console.log('before')
+      console.log(this.$prismic)
+      const blogs = await this.$prismic.api.getSingle('blog_post')
+      // this.$prismic.client
+      //   .previewSession(previewToken, this.$prismic.linkResolver, '/')
+      //   .then((url) => {
+      //     window.location.replace(url)
+      //   })
+      console.log('after')
+      console.log(blogs)
 
-      commit('SET_BLOGS', response)
+      commit('SET_BLOGS', blogs)
       commit('ui/LOADING_FALSE', null, { root: true })
     } catch (e) {
+      console.log(e)
       commit('ui/LOADING_FALSE', null, { root: true })
     }
   },

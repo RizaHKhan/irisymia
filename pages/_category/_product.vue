@@ -14,7 +14,7 @@
       </p>
       <v-btn
         class="success float-right"
-        @click="addMessage(`Message ${num++}`)"
+        @click="addMessage({ message: 'This is a message', color: 'yellow' })"
         >{{ $t('product-page.add-to-cart') }}</v-btn
       >
     </v-col>

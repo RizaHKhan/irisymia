@@ -18,10 +18,12 @@ export default {
   css: [],
   plugins: [],
   components: true,
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify'],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', '@nuxtjs/prismic'],
   modules: ['nuxt-i18n', '@nuxtjs/axios', '@nuxt/image'],
   prismic: {
     endpoint: process.env.PRISMIC_ENDPOINT,
+    linkResolver: require('./prismic/link-resolver.js'),
+    htmlSerializer: require('./prismic/html-serializer.js'),
   },
   i18n: {
     locales: ['es'],
