@@ -28,5 +28,9 @@
   },
   "product-page": {
     "add-to-cart": "Add To Cart"
+  },
+  "blog": {
+    "title": "Blog",
+    "created-on": "Created On"
   }
 }

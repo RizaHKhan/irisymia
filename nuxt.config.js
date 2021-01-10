@@ -22,8 +22,8 @@ export default {
   modules: ['nuxt-i18n', '@nuxtjs/axios', '@nuxt/image'],
   prismic: {
     endpoint: process.env.PRISMIC_ENDPOINT,
-    linkResolver: require('./prismic/link-resolver.js'),
-    htmlSerializer: require('./prismic/html-serializer.js'),
+    linkResolver: '@/plugins/link-resolver.js',
+    htmlSerializer: '@/plugins/html-serializer.js',
   },
   i18n: {
     locales: ['es'],
