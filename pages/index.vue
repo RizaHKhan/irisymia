@@ -1,42 +1,48 @@
 <template>
-  <v-layout wrap>
-    <v-row v-for="category in categories" :key="category">
-      <v-row class="mt-5">
-        <v-col>
-          <h1 class="text-h3 font-weight-thin">
-            {{ category.charAt(0).toUpperCase() + category.slice(1) }}
-          </h1>
-        </v-col>
-      </v-row>
-      <v-layout wrap>
-        <ProductCard
-          v-for="product in products.filter((p) => p.category === category)"
+  <v-container>
+    <v-sheet
+      v-for="category in categories"
+      :key="category.id"
+      class="mx-auto my-10 py-4 hidden-sm-and-down"
+      elevation="8"
+    >
+      <p class="text-h2 font-weight-light text-center">
+        {{ category.data.category_name[0].text }}
+      </p>
+      <v-slide-group show-arrows>
+        <v-slide-item
+          v-for="product in products.filter(
+            (product) => product.data.category.id === category.id
+          )"
           :key="product.id"
-          :product="product"
-        />
-      </v-layout>
-    </v-row>
-  </v-layout>
+          class="my-2"
+        >
+          <ProductCard :product="product" :categoryUID="category.uid" />
+        </v-slide-item>
+      </v-slide-group>
+    </v-sheet>
+  </v-container>
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard'
+/* import ProductCard from '@/components/ProductCard' */
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    ProductCard,
+    /* ProductCard, */
   },
   async asyncData({ store }) {
-    const products = store.getters['products/GET_PRODUCTS']
-    const categories = store.getters['categories/GET_CATEGORIES']
-
-    if (!products.length && !categories.length) {
-      try {
-        await store.dispatch('categories/GET_CATEGORIES')
-        await store.dispatch('products/GET_PRODUCTS')
-      } catch (e) {}
-    }
+    try {
+      await store.dispatch('categories/GET_CATEGORIES')
+      const categories = store.getters['categories/GET_CATEGORIES']
+      await store.dispatch(
+        'products/GET_PRODUCTS_BY_CATEGORY',
+        categories.map((c) => {
+          return c.id
+        })
+      )
+    } catch (e) {}
   },
   computed: {
     ...mapGetters({
@@ -46,3 +52,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+a {
+  text-decoration: none;
+}
+</style>

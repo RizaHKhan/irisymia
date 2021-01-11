@@ -21,7 +21,9 @@
     <v-list dense>
       <v-list-item v-for="(category, i) in categories" :key="i" link>
         <v-list-item-content>
-          <v-list-item-title>{{ category }}</v-list-item-title>
+          <v-list-item-title>{{
+            category.data.category_name[0].text
+          }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>

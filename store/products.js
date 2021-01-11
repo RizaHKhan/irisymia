@@ -4,8 +4,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_PRODUCTS(state, products) {
-    state.products = products
+  SET_PRODUCTS(state, product) {
+    state.products.push(product)
   },
   SET_PRODUCT(state, product) {
     state.product = product
@@ -13,22 +13,42 @@ export const mutations = {
 }
 
 export const actions = {
-  async GET_PRODUCTS({ commit }, category) {
+  async GET_PRODUCTS_BY_PAGE({ commit }, page) {
     try {
       commit('ui/LOADING_TRUE', null, { root: true })
-      let url
 
-      if (!category) {
-        url = 'https://fakestoreapi.com/products'
-      } else {
-        url = `https://fakestoreapi.com/products/category/${category}`
-      }
+      const products = await this.$prismic.api.query(
+        this.$prismic.predicates.at('document.type', 'product'),
+        { page: 1 }
+      )
 
-      const res = await this.$axios.$get(url)
+      commit('SET_PRODUCTS', products.results)
+      commit('ui/LOADING_FALSE', null, { root: true })
+    } catch (e) {
+      commit('ui/LOADING_FALSE', null, { root: true })
+      throw e // this allows us to hit the catch block in asyncData
+    }
+  },
+  // eslint-disable-next-line
+  async GET_PRODUCTS_BY_CATEGORY({ commit }, categories = []) {
+    try {
+      commit('ui/LOADING_TRUE', null, { root: true })
 
-      if (!res.length) throw new Error('No Data Found')
+      const promises = categories.map(async (category) => {
+        const { results } = await this.$prismic.api.query(
+          this.$prismic.predicates.at('my.product.category', category)
+        )
+        return results
+      })
 
-      commit('SET_PRODUCTS', res)
+      const results = await Promise.all(promises)
+
+      results.map((r) => {
+        r.forEach((obj) => {
+          commit('SET_PRODUCTS', obj)
+        })
+      })
+
       commit('ui/LOADING_FALSE', null, { root: true })
     } catch (e) {
       commit('ui/LOADING_FALSE', null, { root: true })

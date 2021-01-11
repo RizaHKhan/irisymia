@@ -29,15 +29,15 @@
     </v-btn>
     <template v-if="showTemplate" v-slot:extension>
       <v-row class="justify-center hidden-md-and-down">
-        <v-btn
-          v-for="(item, index) in categories"
+        <nuxt-link
+          v-for="(category, index) in categories"
           :key="index"
-          :to="`/${item}`"
-          small
-          text
-          class="mx-1 white--text"
-          >{{ item }}</v-btn
+          :to="`/${category.uid}`"
         >
+          <v-btn small text class="mx-1 white--text">{{
+            category.data.category_name[0].text
+          }}</v-btn>
+        </nuxt-link>
       </v-row>
     </template>
   </v-app-bar>
@@ -82,5 +82,8 @@ export default {
 
 .v-toolbar__title {
   height: 100%;
+}
+a {
+  text-decoration: none;
 }
 </style>
