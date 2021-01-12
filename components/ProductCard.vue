@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-3" max-width="400">
+  <v-card class="ma-3" max-width="400">
     <v-img
       class="white--text align-end"
       height="200px"
@@ -7,6 +7,7 @@
     >
       <v-card-title>{{ product.data.name[0].text }}</v-card-title>
     </v-img>
+    <pre>{{ product.uid }}</pre>
 
     <v-card-subtitle class="pb-0">{{ product.data.price }}</v-card-subtitle>
 

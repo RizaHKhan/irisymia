@@ -10,12 +10,19 @@ export const mutations = {
   SET_PRODUCT(state, product) {
     state.product = product
   },
+  WIPE_PRODUCTS(state) {
+    state.products = []
+  },
+  WIPE_PRODUCT(state) {
+    state.product = {}
+  },
 }
 
 export const actions = {
   async GET_PRODUCTS_BY_PAGE({ commit }, page) {
     try {
       commit('ui/LOADING_TRUE', null, { root: true })
+      commit('WIPE_PRODUCTS')
 
       const products = await this.$prismic.api.query(
         this.$prismic.predicates.at('document.type', 'product'),
@@ -29,10 +36,10 @@ export const actions = {
       throw e // this allows us to hit the catch block in asyncData
     }
   },
-  // eslint-disable-next-line
   async GET_PRODUCTS_BY_CATEGORY({ commit }, categories = []) {
     try {
       commit('ui/LOADING_TRUE', null, { root: true })
+      commit('WIPE_PRODUCTS')
 
       const promises = categories.map(async (category) => {
         const { results } = await this.$prismic.api.query(
@@ -55,15 +62,20 @@ export const actions = {
       throw e // this allows us to hit the catch block in asyncData
     }
   },
-  async GET_PRODUCT({ commit }, product) {
+  async GET_PRODUCT_BY_UID_AND_CATEGORY({ commit }, { category, product }) {
     try {
       commit('ui/LOADING_TRUE', null, { root: true })
-      const url = `https://fakestoreapi.com/products/${product}`
-      const res = await this.$axios.$get(url)
+      commit('WIPE_PRODUCT')
 
-      if (!res) throw new Error('No Data Found')
+      const { results } = await this.$prismic.api.query([
+        this.$prismic.predicates.at('my.product.uid', product),
+      ])
 
-      commit('SET_PRODUCT', res)
+      if (results[0].data.category.uid !== category) {
+        throw new Error('Item not available category')
+      }
+
+      commit('SET_PRODUCT', results[0])
       commit('ui/LOADING_FALSE', null, { root: true })
     } catch (e) {
       commit('ui/LOADING_FALSE', null, { root: true })
@@ -71,6 +83,7 @@ export const actions = {
     }
   },
 }
+
 export const getters = {
   GET_PRODUCTS: (state) => state.products,
   GET_PRODUCTS_BY_CATEGORY: (state) => state.products,

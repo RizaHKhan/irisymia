@@ -25,12 +25,12 @@
 </template>
 
 <script>
-/* import ProductCard from '@/components/ProductCard' */
+import ProductCard from '@/components/ProductCard'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    /* ProductCard, */
+    ProductCard,
   },
   async asyncData({ store }) {
     try {
