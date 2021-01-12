@@ -17,7 +17,7 @@
           :key="product.id"
           class="my-2"
         >
-          <ProductCard :product="product" :categoryUID="category.uid" />
+          <ProductCard :product="product" :categoryuid="category.uid" />
         </v-slide-item>
       </v-slide-group>
     </v-sheet>

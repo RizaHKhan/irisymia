@@ -15,7 +15,7 @@
       <div>{{ product.data.description[0].text }}</div>
     </v-card-text>
     <v-card-actions>
-      <nuxt-link :to="`/${categoryUID}/${product.uid}`"
+      <nuxt-link :to="`/${categoryuid}/${product.uid}`"
         ><v-btn color="success" text> Explore </v-btn></nuxt-link
       >
     </v-card-actions>
@@ -25,7 +25,7 @@
 <script>
 export default {
   props: {
-    categoryUID: {
+    categoryuid: {
       type: String,
       required: true,
       default: '',
