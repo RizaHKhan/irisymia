@@ -17,8 +17,9 @@
       </v-card-text>
       <v-card-actions class="d-flex justify-end">
         <nuxt-link :to="`/${categoryuid}/${product.uid}`"
-          ><v-btn color="success" text> Explore </v-btn></nuxt-link
+          ><v-btn color="success" text>Explore</v-btn></nuxt-link
         >
+        <v-btn class="success">Add To Cart</v-btn>
       </v-card-actions>
     </v-card>
   </transition>

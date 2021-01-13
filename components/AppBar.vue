@@ -10,14 +10,16 @@
         src="/logo_transparent.png"
         contain
         height="100%"
-        class="my-auto"
+        class="my-auto logo"
+        @click="navigateHome"
       ></v-img>
     </v-toolbar-title>
 
-    <v-btn icon>
+    <v-btn icon absolute left class="hidden-md-and-down">
       <v-icon class="white--text">mdi-dots-vertical</v-icon>
     </v-btn>
-    <v-btn icon to="/cart">
+
+    <v-btn icon to="/cart" absolute right top="10px" class="ma-0">
       <v-badge
         color="success"
         :value="cartLength"
@@ -71,6 +73,9 @@ export default {
     ...mapMutations({
       toggleNavigationDrawer: 'ui/TOGGLE_NAVIGATIONDRAWER',
     }),
+    navigateHome() {
+      this.$router.push('/')
+    },
   },
 }
 </script>
@@ -85,5 +90,11 @@ export default {
 }
 a {
   text-decoration: none;
+}
+
+.logo {
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
