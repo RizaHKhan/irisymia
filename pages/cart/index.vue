@@ -2,7 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="desserts"
-    sort-by="calories"
+    sort-by="qty"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -29,8 +29,8 @@
       </v-toolbar>
     </template>
     <template v-slot:item.updateqty="{ item }">
-      <v-icon small @click="qty(item)"> mdi-plus </v-icon>
-      <v-icon small @click="qty(item)"> mdi-minus </v-icon>
+      <v-icon @click="item.qty--"> mdi-minus </v-icon>
+      <v-icon @click="item.qty++"> mdi-plus </v-icon>
     </template>
     <template v-slot:item.delete="{ item }">
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
@@ -63,9 +63,16 @@ export default {
         sortable: false,
         value: 'name',
       },
-      { text: 'Quantity', value: 'qty' },
-      { text: 'Update Quantity', value: 'updateqty', sortable: false },
-      { text: 'Delete', value: 'delete', sortable: false },
+      { text: 'Price', value: 'price', align: 'center' },
+      { text: 'Quantity', value: 'qty', align: 'center' },
+      { text: 'Total', value: 'total', align: 'center' },
+      {
+        text: 'Update Quantity',
+        value: 'updateqty',
+        align: 'center',
+        sortable: false,
+      },
+      { text: 'Delete', value: 'delete', align: 'center', sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
@@ -103,19 +110,17 @@ export default {
       this.desserts = [
         {
           name: 'Frozen Yogurt',
+          price: 29.99,
           qty: 10,
+          total: 290.0,
         },
         {
           name: 'Ice cream sandwich',
+          price: 59.99,
           qty: 20,
+          total: 500,
         },
       ]
-    },
-
-    editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
     },
 
     deleteItem(item) {
@@ -143,15 +148,6 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       })
-    },
-
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      } else {
-        this.desserts.push(this.editedItem)
-      }
-      this.close()
     },
   },
 }

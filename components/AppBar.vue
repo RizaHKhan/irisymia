@@ -15,11 +15,11 @@
       ></v-img>
     </v-toolbar-title>
 
-    <v-btn icon absolute left class="hidden-md-and-down">
+    <v-btn icon absolute left top class="hidden-md-and-down">
       <v-icon class="white--text">mdi-dots-vertical</v-icon>
     </v-btn>
 
-    <v-btn icon to="/cart" absolute right top="10px" class="ma-0">
+    <v-btn icon to="/cart" absolute right top class="ma-0">
       <v-badge
         color="success"
         :value="cartLength"
