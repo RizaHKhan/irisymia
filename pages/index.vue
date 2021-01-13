@@ -36,12 +36,11 @@ export default {
     try {
       await store.dispatch('categories/GET_CATEGORIES')
       const categories = store.getters['categories/GET_CATEGORIES']
-      await store.dispatch(
-        'products/GET_PRODUCTS_BY_CATEGORY',
-        categories.map((c) => {
+      await store.dispatch('products/GET_PRODUCTS_BY_CATEGORY', {
+        categories: categories.map((c) => {
           return c.id
-        })
-      )
+        }),
+      })
     } catch (e) {}
   },
   computed: {

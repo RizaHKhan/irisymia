@@ -21,8 +21,8 @@
         <p>Category: {{ product.data.category.uid.toUpperCase() }}</p>
         <p>Price: {{ product.data.price }}</p>
         <p>Description: {{ product.data.description[0].text }}</p>
+        <v-btn>Add To Card</v-btn>
       </v-col>
-      <pre>{{ product }}</pre>
     </v-row>
   </v-container>
 </template>
@@ -40,21 +40,6 @@ export default {
       })
     } catch (e) {
       redirect('/')
-    }
-  },
-  data() {
-    return {
-      imageIndex: null,
-      show: false,
-      num: 0,
-      colors: [
-        'indigo',
-        'warning',
-        'pink darken-2',
-        'red lighten-1',
-        'deep-purple accent-4',
-      ],
-      slides: ['First', 'Second', 'Third', 'Fourth', 'Fifth'],
     }
   },
   computed: {

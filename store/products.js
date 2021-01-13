@@ -1,6 +1,7 @@
 export const state = () => ({
   products: [],
   product: {},
+  pageLength: 0,
 })
 
 export const mutations = {
@@ -16,46 +17,43 @@ export const mutations = {
   WIPE_PRODUCT(state) {
     state.product = {}
   },
+  WIPE_PAGE_LENGTH(state) {
+    state.pageLength = 0
+  },
+  SET_PAGE_LENGTH(state, length) {
+    state.pageLength = length
+  },
 }
 
 export const actions = {
-  async GET_PRODUCTS_BY_PAGE({ commit }, page) {
+  async GET_PRODUCTS_BY_CATEGORY({ commit }, { categories = [], page = 1 }) {
+    // NOTICE: ITS CATEGORY ID NOT UID
     try {
       commit('ui/LOADING_TRUE', null, { root: true })
       commit('WIPE_PRODUCTS')
 
-      const products = await this.$prismic.api.query(
-        this.$prismic.predicates.at('document.type', 'product'),
-        { page: 1 }
-      )
-
-      commit('SET_PRODUCTS', products.results)
-      commit('ui/LOADING_FALSE', null, { root: true })
-    } catch (e) {
-      commit('ui/LOADING_FALSE', null, { root: true })
-      throw e // this allows us to hit the catch block in asyncData
-    }
-  },
-  async GET_PRODUCTS_BY_CATEGORY({ commit }, categories = []) {
-    try {
-      commit('ui/LOADING_TRUE', null, { root: true })
-      commit('WIPE_PRODUCTS')
+      const options = {
+        page,
+        pageSize: 10,
+      }
 
       const promises = categories.map(async (category) => {
-        const { results } = await this.$prismic.api.query(
-          this.$prismic.predicates.at('my.product.category', category)
+        const response = await this.$prismic.api.query(
+          this.$prismic.predicates.at('my.product.category', category),
+          options
         )
-        return results
+        return { results: response.results, pageLength: response.total_pages }
       })
 
-      const results = await Promise.all(promises)
+      const response = await Promise.all(promises)
 
-      results.map((r) => {
-        r.forEach((obj) => {
+      response.map((r) => {
+        r.results.forEach((obj) => {
           commit('SET_PRODUCTS', obj)
         })
       })
 
+      commit('SET_PAGE_LENGTH', response[0].pageLength)
       commit('ui/LOADING_FALSE', null, { root: true })
     } catch (e) {
       commit('ui/LOADING_FALSE', null, { root: true })
@@ -88,4 +86,5 @@ export const getters = {
   GET_PRODUCTS: (state) => state.products,
   GET_PRODUCTS_BY_CATEGORY: (state) => state.products,
   GET_PRODUCT: (state) => state.product,
+  GET_PAGE_LENGTH: (state) => state.pageLength,
 }

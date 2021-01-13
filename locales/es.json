@@ -33,5 +33,8 @@
     "title": "Blog",
     "created-on": "Created On",
     "read-more": "Read More"
+  },
+  "snackbar": {
+    "server-error": "There was an error, please try again later."
   }
 }
