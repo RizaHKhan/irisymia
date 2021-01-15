@@ -1491,6 +1491,11 @@
   dependencies:
     http-proxy-middleware "^1.0.6"
 
+"@nuxtjs/snipcart@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/snipcart/-/snipcart-1.1.1.tgz#26f363195bf1800d9c1c74b8d7ed923dff1ab750"
+  integrity sha512-XwyhckiVRQN8NufMbUbVyFt7RRjDjBMwTAfGwmQzu0eNIOZlyO6yHsgVgI9cLdxFDzl5WRXpiH1llPv9VLVq0Q==
+
 "@nuxtjs/vuetify@^1.11.2":
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.11.2.tgz#fefa861d98c021e10dd579a5b91b34b3fb49dc99"
@@ -8834,6 +8839,11 @@ prismic-javascript@^3.0.2:
   integrity sha512-9RpituEVE/eZAlj+vUVy61z2IQJdL0zRYuy+IHdiUA7/37zoiCE/Z0AbI0zAWyi5UDXizgQ2TuQTLkOm62KGwA==
   dependencies:
     cross-fetch "^3.0.5"
+
+prismic-vue@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/prismic-vue/-/prismic-vue-2.0.1.tgz#c1c7af5df9fd06505b10e3a1e7d41ba06493985a"
+  integrity sha512-/bj8VUByc1NlEArl66U1OmyJJFefqatRUQ6m0MbPmfTwBfkuAw2tbCgtzhb96UCEKhRJzGkICJ3UPhyH+kMc2g==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

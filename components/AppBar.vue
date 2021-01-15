@@ -19,16 +19,7 @@
       <v-icon class="white--text">mdi-dots-vertical</v-icon>
     </v-btn>
 
-    <v-btn icon to="/cart" absolute right top class="ma-0">
-      <v-badge
-        color="success"
-        :value="cartLength"
-        :content="cartLength"
-        overlap
-      >
-        <v-icon class="white--text">mdi-cart</v-icon>
-      </v-badge>
-    </v-btn>
+    <Cart />
     <template v-if="showTemplate" v-slot:extension>
       <v-row class="justify-center hidden-md-and-down">
         <nuxt-link
@@ -46,9 +37,11 @@
 </template>
 
 <script>
+import Cart from '@/components/Cart.vue'
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
+  components: { Cart },
   computed: {
     ...mapGetters({
       categories: 'categories/GET_CATEGORIES',

@@ -21,16 +21,21 @@
         <p>Category: {{ product.data.category.uid.toUpperCase() }}</p>
         <p>Price: {{ product.data.price }}</p>
         <p>Description: {{ product.data.description[0].text }}</p>
-        <v-btn>Add To Card</v-btn>
+        <AddToCartButton :product="product" />
       </v-col>
     </v-row>
+    <pre>{{ product }}</pre>
   </v-container>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import AddToCartButton from '@/components/AddToCartButton'
 
 export default {
+  components: {
+    AddToCartButton,
+  },
   async asyncData({ params, store, redirect }) {
     try {
       await store.dispatch('categories/GET_CATEGORIES')

@@ -18,12 +18,28 @@ export default {
   css: [],
   plugins: [],
   components: true,
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/vuetify', '@nuxtjs/prismic'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/vuetify',
+    '@nuxtjs/prismic',
+    '@nuxtjs/snipcart',
+  ],
   modules: ['nuxt-i18n', '@nuxtjs/axios', '@nuxt/image'],
   prismic: {
     endpoint: process.env.PRISMIC_ENDPOINT,
     linkResolver: '@/plugins/link-resolver.js',
     htmlSerializer: '@/plugins/html-serializer.js',
+  },
+  snipcart: {
+    key: process.env.SNIPCART_APIKEY,
+    attribute: ['data-config-modal-style', 'side'],
+    locales: {
+      en: {
+        cart_summary: {
+          total: 'Total:',
+        },
+      },
+    }, // not required but I plan on adding Spanish
   },
   i18n: {
     locales: ['es'],

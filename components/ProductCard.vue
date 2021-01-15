@@ -19,7 +19,7 @@
         <nuxt-link :to="`/${categoryuid}/${product.uid}`"
           ><v-btn color="success" text>Explore</v-btn></nuxt-link
         >
-        <v-btn class="success">Add To Cart</v-btn>
+        <AddToCartButton :product="product" />
       </v-card-actions>
     </v-card>
   </transition>
