@@ -15,10 +15,6 @@
       ></v-img>
     </v-toolbar-title>
 
-    <v-btn icon absolute left top class="hidden-md-and-down">
-      <v-icon class="white--text">mdi-dots-vertical</v-icon>
-    </v-btn>
-
     <Cart />
     <template v-if="showTemplate" v-slot:extension>
       <v-row class="justify-center hidden-md-and-down">
