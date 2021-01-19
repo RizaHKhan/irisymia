@@ -19,6 +19,17 @@
       </v-list-item>
     </v-list>
     <v-divider></v-divider>
+    <v-list>
+      <v-list-item link>
+        <v-list-item-content>
+          <nuxt-link :to="`/blog`">
+            <v-list-item-title class="black--text">
+              {{ $t('blog.title') }}
+            </v-list-item-title>
+          </nuxt-link>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
