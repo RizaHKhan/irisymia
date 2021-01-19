@@ -56,6 +56,7 @@ import { mapGetters } from 'vuex'
 export default {
   async asyncData({ store, $prismic, redirect }) {
     try {
+      await store.dispatch('categories/GET_CATEGORIES')
       store.commit('ui/LOADING_FALSE')
       await store.dispatch('blog/GET_BLOGS')
     } catch (e) {
