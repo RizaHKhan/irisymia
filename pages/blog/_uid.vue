@@ -24,6 +24,7 @@ export default {
   async asyncData({ store, $prismic, redirect, params }) {
     try {
       store.commit('ui/LOADING_FALSE')
+      await store.dispatch('categories/GET_CATEGORIES')
       await store.dispatch('blog/GET_BLOG', params.uid)
     } catch (e) {
       redirect('/')
