@@ -17,14 +17,23 @@
         </v-carousel>
       </v-col>
       <v-col cols="12" md="6">
-        <h1>{{ product.data.name[0].text }}</h1>
-        <p>Category: {{ product.data.category.uid.toUpperCase() }}</p>
-        <p>Price: {{ product.data.price }}</p>
-        <p>Description: {{ product.data.description[0].text }}</p>
+        <p class="text-h3 font-weight-thin mb-0">
+          {{ product.data.name[0].text }}
+        </p>
+        <v-btn
+          rounded
+          outlined
+          color="primary"
+          small
+          class="my-2"
+          @click="goToCategory(product.data.category.uid)"
+          >{{ product.data.category.uid }}</v-btn
+        >
+        <p class="text-h4 font-weight-thin">${{ product.data.price }}</p>
+        <p class="body-1">{{ product.data.description[0].text }}</p>
         <AddToCartButton :product="product" />
       </v-col>
     </v-row>
-    <pre>{{ product }}</pre>
   </v-container>
 </template>
 
@@ -56,6 +65,10 @@ export default {
     ...mapMutations({
       addMessage: 'ui/ADD_MESSAGE_TO_SNACKBAR',
     }),
+    goToCategory(category) {
+      console.log(category)
+      this.$router.push(`/${category}`)
+    },
   },
 }
 </script>

@@ -27,7 +27,8 @@
     "email": "Email"
   },
   "button": {
-    "add-to-cart": "Add To Cart"
+    "add-to-cart": "Add To Cart",
+    "explore": "Explore"
   },
   "blog": {
     "title": "Blog",

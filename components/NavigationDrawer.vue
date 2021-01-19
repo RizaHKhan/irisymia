@@ -6,13 +6,15 @@
     fixed
     temporary
   >
-    <v-list dense>
+    <v-list>
       <v-subheader>{{ $t('navigation-drawer.categories') }}</v-subheader>
       <v-list-item v-for="(category, i) in categories" :key="i" link>
         <v-list-item-content>
-          <v-list-item-title>{{
-            category.data.category_name[0].text
-          }}</v-list-item-title>
+          <nuxt-link :to="`/${category.uid}`">
+            <v-list-item-title class="black--text">{{
+              category.data.category_name[0].text
+            }}</v-list-item-title>
+          </nuxt-link>
         </v-list-item-content>
       </v-list-item>
     </v-list>

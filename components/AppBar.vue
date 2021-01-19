@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar class="grey darken-4" app shrink-on-scroll>
+  <v-app-bar app shrink-on-scroll>
     <v-app-bar-nav-icon
-      class="hidden-lg-and-up white--text"
+      class="hidden-lg-and-up"
       @click="toggleNavigationDrawer"
     ></v-app-bar-nav-icon>
 
@@ -23,7 +23,7 @@
           :key="index"
           :to="`/${category.uid}`"
         >
-          <v-btn small text class="mx-1 white--text">{{
+          <v-btn small text class="mx-1">{{
             category.data.category_name[0].text
           }}</v-btn>
         </nuxt-link>

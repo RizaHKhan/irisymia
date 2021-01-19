@@ -18,6 +18,18 @@ export default {
       default: () => {},
     },
   },
+  mounted() {
+    document.addEventListener('snipcart.ready', () => {
+      try {
+        this.Snipcart = window.Snipcart
+      } catch (e) {
+        this.addSnackbarMessage({
+          message: this.$t('snackbar.server-error'),
+          color: 'red',
+        })
+      }
+    })
+  },
 }
 </script>
 

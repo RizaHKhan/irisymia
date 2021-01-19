@@ -1,7 +1,7 @@
 <template>
   <v-btn icon @click="openCart" absolute right class="ma-0">
     <v-badge color="success" :value="cartLength" :content="cartLength" overlap>
-      <v-icon class="white--text">mdi-cart</v-icon>
+      <v-icon>mdi-cart</v-icon>
     </v-badge>
   </v-btn>
 </template>
@@ -27,6 +27,9 @@ export default {
         })
       }
     })
+  },
+  destroy() {
+    document.removeEventListener('snipcart.ready')
   },
   methods: {
     ...mapMutations({
