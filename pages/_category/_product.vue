@@ -34,6 +34,36 @@
         <AddToCartButton :product="product" />
       </v-col>
     </v-row>
+    <v-row class="mb-5">
+      <v-col cols="12">
+        <p class="text-h5 text-center font-weight-thin">
+          {{ $t('product.related') }}
+        </p>
+      </v-col>
+      <v-col>
+        <v-slide-group show-arrows class="hidden-sm-and-down">
+          <v-slide-item
+            v-for="product in products"
+            :key="product.id"
+            class="my-2"
+          >
+            <ProductCard
+              :product="product"
+              :categoryuid="$route.params.category"
+            />
+          </v-slide-item>
+        </v-slide-group>
+        <v-layout wrap class="hidden-md-and-up">
+          <ProductCard
+            v-for="product in products"
+            :key="product.id"
+            class="mx-auto"
+            :product="product"
+            :categoryuid="$route.params.category"
+          />
+        </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -47,10 +77,21 @@ export default {
   },
   async asyncData({ params, store, redirect }) {
     try {
-      await store.dispatch('categories/GET_CATEGORIES')
+      const categories = store.getters['categories/GET_CATEGORIES'].filter(
+        (cat) => {
+          return cat.uid === params.category
+        }
+      )
+
       await store.dispatch('products/GET_PRODUCT_BY_UID_AND_CATEGORY', {
         category: params.category,
         product: params.product,
+      })
+
+      await store.dispatch('products/GET_PRODUCTS_BY_CATEGORY', {
+        categories: categories.map((c) => {
+          return c.id
+        }),
       })
     } catch (e) {
       redirect('/')
@@ -59,6 +100,7 @@ export default {
   computed: {
     ...mapGetters({
       product: 'products/GET_PRODUCT',
+      products: 'products/GET_PRODUCTS',
     }),
   },
   methods: {

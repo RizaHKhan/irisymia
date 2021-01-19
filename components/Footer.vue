@@ -28,14 +28,14 @@
               >{{ $t('footer.categories.title') }}</v-list-item-title
             >
             <v-btn
-              v-for="(item, index) in categories"
+              v-for="(category, index) in categories"
               :key="index"
-              :to="item.link"
+              :to="`/${category.uid}`"
+              class="text-caption black--text"
               text
               small
-              class="text-caption"
-              >{{ item.title }}</v-btn
-            >
+              >{{ category.data.category_name[0].text }}
+            </v-btn>
           </v-list-item-content>
         </v-list-item>
       </v-col>
@@ -75,23 +75,15 @@
 
 <script>
 import SubscribeForm from '@/components/SubscribeForm'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     SubscribeForm,
   },
   data() {
     return {
-      navigate: [
-        { title: this.$t('footer.navigate.blog'), link: '/blog' },
-        { title: this.$t('footer.navigate.sitemap'), link: '/sitemap' },
-      ],
-      categories: [
-        { title: 'Bandejitas', link: '/bandejitas' },
-        { title: 'Bombas de chocolate', link: '/cbombas' },
-        { title: 'Galletitas artensanles', link: '/galletitas' },
-        { title: 'Romos de fresas', link: '/romas' },
-        { title: 'Tabletas de chocolate', link: '/chocolate' },
-      ],
+      navigate: [{ title: this.$t('footer.navigate.blog'), link: '/blog' }],
       info: [
         {
           title: this.$t('footer.info.one'),
@@ -104,6 +96,11 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters({
+      categories: 'categories/GET_CATEGORIES',
+    }),
   },
 }
 </script>

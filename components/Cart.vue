@@ -1,5 +1,5 @@
 <template>
-  <v-btn icon @click="openCart" absolute right class="ma-0">
+  <v-btn icon absolute right class="ma-0" @click="openCart">
     <v-badge color="success" :value="cartLength" :content="cartLength" overlap>
       <v-icon>mdi-cart</v-icon>
     </v-badge>

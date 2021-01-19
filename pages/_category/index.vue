@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-row>
+  <v-container class="my-5">
+    <v-row class="my-5">
       <v-col cols="12">
         <v-pagination
           v-if="pageLength > 1"
