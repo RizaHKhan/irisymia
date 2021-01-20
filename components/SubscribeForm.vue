@@ -9,7 +9,12 @@
       @blur="checkToValidate"
     ></v-text-field>
 
-    <v-btn color="grey darken-4 white--text" large @click="submitForm">
+    <v-btn
+      depressed
+      color="grey darken-4 white--text"
+      large
+      @click="submitForm"
+    >
       {{ $t('subscribe-form.subscribe') }}
     </v-btn>
   </v-form>

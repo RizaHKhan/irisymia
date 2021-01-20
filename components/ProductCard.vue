@@ -22,7 +22,7 @@
       </v-card-text>
       <v-card-actions class="d-flex justify-end">
         <nuxt-link :to="`/${categoryuid}/${product.uid}`"
-          ><v-btn color="blue white--text">{{
+          ><v-btn color="blue white--text" outlined>{{
             $t('button.explore')
           }}</v-btn></nuxt-link
         >

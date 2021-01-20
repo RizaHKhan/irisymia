@@ -13,6 +13,7 @@
           v-for="(blog, i) in blogs"
           :key="i"
           max-width="400"
+          width="100%"
           class="ma-2"
         >
           <v-img
@@ -34,7 +35,7 @@
           </v-card-text>
           <v-card-actions class="d-flex">
             <nuxt-link :to="`/blog/${blog.uid}`" class="ml-auto">
-              <v-btn color="orange">{{
+              <v-btn color="orange" outlined>{{
                 $t('blog.read-more')
               }}</v-btn></nuxt-link
             >
