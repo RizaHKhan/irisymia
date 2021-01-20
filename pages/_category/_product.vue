@@ -17,7 +17,7 @@
         </v-carousel>
       </v-col>
       <v-col cols="12" md="6">
-        <p class="text-h3 font-weight-thin mb-0">
+        <p class="text-h3 font-weight-light mb-0">
           {{ product.data.name[0].text }}
         </p>
         <v-btn
@@ -29,14 +29,14 @@
           @click="goToCategory(product.data.category.uid)"
           >{{ product.data.category.uid }}</v-btn
         >
-        <p class="text-h4 font-weight-thin">${{ product.data.price }}</p>
+        <p class="text-h4 font-weight-light">${{ product.data.price }}</p>
         <p class="body-1">{{ product.data.description[0].text }}</p>
         <AddToCartButton :product="product" />
       </v-col>
     </v-row>
     <v-row class="mb-5">
       <v-col cols="12">
-        <p class="text-h5 text-center font-weight-thin">
+        <p class="text-h5 text-center font-weight-light">
           {{ $t('product.related') }}
         </p>
       </v-col>

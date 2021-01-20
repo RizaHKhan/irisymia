@@ -11,12 +11,14 @@
         :src="product.data.image.url"
       >
       </v-img>
-      <v-card-title class="text-h4 font-weight-thin">{{
-        product.data.name[0].text
-      }}</v-card-title>
-      <v-card-subtitle class="pb-0 text-h4"
-        >${{ product.data.price }}</v-card-subtitle
-      >
+
+      <v-row class="d-flex justify-space-between">
+        <v-card-title class="text-h5 font-weight-light">{{
+          product.data.name[0].text
+        }}</v-card-title>
+        <v-card-title class="text-h5">${{ product.data.price }}</v-card-title>
+      </v-row>
+
       <v-card-text class="text--primary mt-2">
         <div>{{ product.data.description[0].text }}</div>
       </v-card-text>
