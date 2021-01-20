@@ -37,5 +37,13 @@ export default {
       blog: 'blog/GET_BLOG',
     }),
   },
+  head() {
+    return {
+      title: this.blog.title[0].text,
+      meta: [
+        { hid: 'hid', name: 'some name', description: 'some description' },
+      ],
+    }
+  },
 }
 </script>

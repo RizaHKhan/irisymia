@@ -108,9 +108,16 @@ export default {
       addMessage: 'ui/ADD_MESSAGE_TO_SNACKBAR',
     }),
     goToCategory(category) {
-      console.log(category)
       this.$router.push(`/${category}`)
     },
+  },
+  head() {
+    return {
+      title: this.product.data.name[0].text,
+      meta: [
+        { hid: 'hid', name: 'some name', description: 'some description' },
+      ],
+    }
   },
 }
 </script>
