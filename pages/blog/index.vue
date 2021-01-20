@@ -7,7 +7,6 @@
         </p></v-col
       >
     </v-row>
-
     <v-row>
       <v-layout wrap class="mt-5 justify-center">
         <v-card
@@ -23,20 +22,16 @@
             :alt="blog.data.image.alt"
           >
           </v-img>
-
           <v-card-title class="mb-3">{{
             blog.data.title[0].text
           }}</v-card-title>
-
           <v-card-subtitle class="pb-0"
             >{{ $t('blog.created-on') }}:
             {{ formatDate(blog.first_publication_date) }}
           </v-card-subtitle>
-
           <v-card-text class="text--primary">
             {{ blog.data.body[0].text.substring(0, 100) }}...
           </v-card-text>
-
           <v-card-actions class="d-flex">
             <nuxt-link :to="`/blog/${blog.uid}`" class="ml-auto">
               <v-btn color="orange">{{

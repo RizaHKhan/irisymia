@@ -17,6 +17,7 @@
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
     "nuxt-i18n": "^6.16.0",
+    "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2",
     "prismic-vue": "^2.0.1"
   },

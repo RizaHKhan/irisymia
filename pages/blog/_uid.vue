@@ -5,10 +5,12 @@
         <v-parallax :src="blog.image.url" height="300"></v-parallax>
       </v-col>
       <v-col cols="12" md="10" lg="6" class="mx-auto">
-        <p class="text-h3 font-weight-thin px-5">{{ blog.title[0].text }}</p>
+        <p class="text-h3 font-weight-thin px-5 mt-5">
+          {{ blog.title[0].text }}
+        </p>
+        <p class="text-muted text-caption px-5 mt-0">{{ blog.date }}</p>
         <slices-block :slices="blog.body" class="px-5" />
       </v-col>
-      <pre>{{ blog.body.map((i) => i.type) }}</pre>
     </v-row>
   </v-container>
 </template>
