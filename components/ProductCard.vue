@@ -12,7 +12,7 @@
       >
       </v-img>
 
-      <v-row class="d-flex justify-space-between">
+      <v-row class="d-flex px-2 justify-space-between">
         <v-card-title class="text-h5 font-weight-light">{{
           product.data.name[0].text
         }}</v-card-title>

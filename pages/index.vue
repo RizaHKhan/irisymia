@@ -6,7 +6,7 @@
       class="mx-auto my-10 py-4 rounded px-xs-1"
       elevation="8"
     >
-      <p class="text-h4 text-center">
+      <p class="text-h3 font-weight-light text-center">
         {{ category.data.category_name[0].text }}
       </p>
       <v-slide-group show-arrows class="hidden-sm-and-down">
@@ -41,7 +41,7 @@ export default {
   components: {
     ProductCard,
   },
-  async asyncData({ store }) {
+  async asyncData({ store, app }) {
     try {
       await store.dispatch('categories/GET_CATEGORIES')
       const categories = store.getters['categories/GET_CATEGORIES']
@@ -50,7 +50,12 @@ export default {
           return c.id
         }),
       })
-    } catch (e) {}
+    } catch (e) {
+      store.commit('ui/ADD_MESSAGE_TO_SNACKBAR', {
+        message: app.i18n.t('snackbar.server-error'),
+        color: 'red',
+      })
+    }
   },
   computed: {
     ...mapGetters({
