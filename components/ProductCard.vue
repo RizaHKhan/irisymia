@@ -1,36 +1,25 @@
 <template>
   <transition name="fade">
-    <v-card
-      class="ma-3 d-flex flex-column justify-space-between grey lighten-5"
-      max-width="450"
-      width="100%"
-    >
-      <v-img
-        class="white--text align-end"
-        height="250px"
-        :src="product.data.image.url"
+    <nuxt-link :to="`/${categoryuid}/${product.uid}`">
+      <v-card
+        class="ma-3 d-flex flex-column justify-space-between grey lighten-5"
+        max-width="450"
+        width="100%"
       >
-      </v-img>
+        <v-img height="250px" :src="product.data.image.url"> </v-img>
 
-      <v-row class="d-flex px-2 justify-space-between">
-        <v-card-title class="text-h5 font-weight-light">{{
-          product.data.name[0].text
-        }}</v-card-title>
-        <v-card-title class="text-h5">${{ product.data.price }}</v-card-title>
-      </v-row>
+        <v-row class="d-flex px-2 justify-space-between">
+          <v-card-title class="text-h5 font-weight-light">{{
+            product.data.name[0].text
+          }}</v-card-title>
+          <v-card-title class="text-h5">${{ product.data.price }}</v-card-title>
+        </v-row>
 
-      <v-card-text class="text--primary mt-2">
-        <div>{{ product.data.description[0].text }}</div>
-      </v-card-text>
-      <v-card-actions class="d-flex justify-end">
-        <nuxt-link :to="`/${categoryuid}/${product.uid}`"
-          ><v-btn color="blue white--text" outlined>{{
-            $t('button.explore')
-          }}</v-btn></nuxt-link
-        >
-        <AddToCartButton :product="product" />
-      </v-card-actions>
-    </v-card>
+        <v-card-text class="text--primary mt-2">
+          <div>{{ product.data.description[0].text }}</div>
+        </v-card-text>
+      </v-card>
+    </nuxt-link>
   </transition>
 </template>
 

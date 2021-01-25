@@ -2,19 +2,30 @@
   <v-container>
     <v-row class="my-10">
       <v-col cols="12" md="6">
-        <v-carousel
-          cycle
-          height="400"
-          hide-delimiter-background
-          show-arrows-on-hover
+        <v-card rounded>
+          <v-img
+            :src="product.data.gallery[imagePosition].image1.url"
+            height="400"
+          ></v-img>
+        </v-card>
+
+        <v-slide-group
+          v-model="imagePosition"
+          class="pa-4"
+          mandatory
+          center-active
+          show-arrows
         >
-          <v-carousel-item
+          <v-slide-item
             v-for="(image, i) in product.data.gallery"
             :key="i"
-            :src="image.image1.url"
+            v-slot="{ active, toggle }"
           >
-          </v-carousel-item>
-        </v-carousel>
+            <v-card class="ma-4" height="150" width="150" @click="toggle">
+              <v-img :src="image.image1.url" height="100%"> </v-img>
+            </v-card>
+          </v-slide-item>
+        </v-slide-group>
       </v-col>
       <v-col cols="12" md="6">
         <p class="text-h3 font-weight-light mb-0">
@@ -95,6 +106,11 @@ export default {
       })
     } catch (e) {
       redirect('/')
+    }
+  },
+  data() {
+    return {
+      imagePosition: 0,
     }
   },
   computed: {
