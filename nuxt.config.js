@@ -16,7 +16,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/logo_transparent.ico' },
     ],
   },
-  css: [],
+  css: ['~/assets/snipcartStyleSheet.scss'],
   plugins: [],
   components: true,
   buildModules: [
@@ -33,7 +33,7 @@ export default {
   },
   snipcart: {
     key: process.env.SNIPCART_APIKEY,
-    attribute: ['data-config-modal-style', 'side'],
+    attribute: [['data-config-modal-style', 'side']],
     locales: {
       es: {
         cart_summary: {
