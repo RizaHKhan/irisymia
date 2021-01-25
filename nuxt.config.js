@@ -1,3 +1,4 @@
+import path from 'path'
 import colors from 'vuetify/es5/util/colors'
 import es from './locales/es.json'
 
@@ -39,7 +40,8 @@ export default {
           total: 'Total:',
         },
       },
-    }, // not required but I plan on adding Spanish
+    },
+    snipcartCustomize: path.join(__dirname, './plugins/snipcartTemplate'),
   },
   i18n: {
     locales: ['es'],

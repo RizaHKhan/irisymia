@@ -31,7 +31,7 @@ export default {
       }
     })
   },
-  destroy() {
+  beforeDestroy() {
     document.removeEventListener('snipcart.ready')
   },
   methods: {
