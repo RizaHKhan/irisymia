@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    class="snipcart-add-item success ml-auto"
+    class="snipcart-add-item success ml-auto my-1"
     depressed
     :data-item-id="product.id"
     :data-item-name="product.data.name[0].text"

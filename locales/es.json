@@ -49,5 +49,8 @@
   },
   "product": {
     "related": "Related Products"
+  },
+  "date-picker": {
+    "delivery-date": "Delivery Date"
   }
 }

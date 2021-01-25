@@ -42,7 +42,10 @@
         >
         <p class="text-h4 font-weight-light">${{ product.data.price }}</p>
         <p class="body-1">{{ product.data.description[0].text }}</p>
-        <AddToCartButton :product="product" />
+        <v-layout column wrap>
+          <DatePicker />
+          <AddToCartButton :product="product" />
+        </v-layout>
       </v-col>
     </v-row>
     <v-row class="mb-5">
@@ -81,10 +84,12 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import AddToCartButton from '@/components/AddToCartButton'
+import DatePicker from '@/components/DatePicker'
 
 export default {
   components: {
     AddToCartButton,
+    DatePicker,
   },
   async asyncData({ params, store, redirect }) {
     try {
@@ -127,13 +132,13 @@ export default {
       this.$router.push(`/${category}`)
     },
   },
-  head() {
-    return {
-      title: this.product.data.name[0].text,
-      meta: [
-        { hid: 'hid', name: 'some name', description: 'some description' },
-      ],
-    }
-  },
+  /* head() { */
+  /*   return { */
+  /*     title: this.product.data.name[0].text, */
+  /*     meta: [ */
+  /*       { hid: 'hid', name: 'some name', description: 'some description' }, */
+  /*     ], */
+  /*   } */
+  /* }, */
 }
 </script>
