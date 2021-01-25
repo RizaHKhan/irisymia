@@ -34,7 +34,7 @@ export default {
     key: process.env.SNIPCART_APIKEY,
     attribute: ['data-config-modal-style', 'side'],
     locales: {
-      en: {
+      es: {
         cart_summary: {
           total: 'Total:',
         },
