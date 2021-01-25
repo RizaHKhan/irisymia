@@ -21,7 +21,7 @@
             :key="i"
             v-slot="{ active, toggle }"
           >
-            <v-card class="ma-4" height="150" width="150" @click="toggle">
+            <v-card class="ma-4" height="100" width="100" @click="toggle">
               <v-img :src="image.image1.url" height="100%"> </v-img>
             </v-card>
           </v-slide-item>

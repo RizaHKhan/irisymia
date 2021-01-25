@@ -28,6 +28,7 @@ export default {
       date: null,
       dialog: false,
       picker: new Date().toISOString().substr(0, 10),
+      removeDates: ['2021-01-29', '2021-02-5'],
     }
   },
   computed: {
@@ -45,7 +46,7 @@ export default {
       const d = new Date(val)
       const today = new Date()
       const tomorrow = today.setDate(today.getDate() + 1)
-      if (d > tomorrow) {
+      if (d > tomorrow && !this.removeDates.includes(val)) {
         return true
       }
       return false
