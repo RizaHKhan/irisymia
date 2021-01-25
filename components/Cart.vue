@@ -20,6 +20,9 @@ export default {
     document.addEventListener('snipcart.ready', () => {
       try {
         this.Snipcart = window.Snipcart
+        this.Snipcart?.store.subscribe(() => {
+          this.cartLength = this.Snipcart.store.getState().cart.items.count
+        })
       } catch (e) {
         this.addSnackbarMessage({
           message: this.$t('snackbar.server-error'),
