@@ -33,7 +33,10 @@ export default {
   },
   snipcart: {
     key: process.env.SNIPCART_APIKEY,
-    attribute: [['data-config-modal-style', 'side']],
+    attributes: [
+      ['data-config-modal-style', 'side'],
+      ['data-config-add-product-behavior', 'none'],
+    ],
     locales: {
       es: {
         cart_summary: {

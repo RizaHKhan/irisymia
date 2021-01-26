@@ -1,5 +1,5 @@
 <template>
-  <v-btn icon absolute right class="ma-0" @click="openCart">
+  <v-btn icon absolute right class="ma-0" @click.stop="openCart">
     <v-badge color="success" :value="cartLength" :content="cartLength" overlap>
       <v-icon>mdi-cart</v-icon>
     </v-badge>
@@ -20,7 +20,7 @@ export default {
     document.addEventListener('snipcart.ready', () => {
       try {
         this.Snipcart = window.Snipcart
-        window.Snipcart?.api.configure('show_cart_automatically', false)
+        console.log(this.Snipcart)
         this.Snipcart?.store.subscribe(() => {
           this.cartLength = this.Snipcart.store.getState().cart.items.count
         })
