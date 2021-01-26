@@ -20,25 +20,6 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col cols="12" sm="6" md="3" lg="3" xl="2">
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title
-              class="mb-3 text-subtitle-1 text-center font-weight-light grey--text"
-              >{{ $t('footer.categories.title') }}</v-list-item-title
-            >
-            <v-btn
-              v-for="(category, index) in categories"
-              :key="index"
-              :to="`/${category.uid}`"
-              class="text-caption black--text"
-              text
-              small
-              >{{ category.data.category_name[0].text }}
-            </v-btn>
-          </v-list-item-content>
-        </v-list-item>
-      </v-col>
       <v-col cols="12" sm="6" md="6" lg="3">
         <v-list-item>
           <v-list-item-content>
@@ -55,7 +36,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col cols="12" sm="6" md="6" lg="3">
+      <v-col cols="12" sm="12" md="6" lg="3">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title
@@ -87,9 +68,6 @@ export default {
       info: [
         {
           title: this.$t('footer.info.one'),
-        },
-        {
-          title: this.$t('footer.info.two'),
         },
         {
           title: this.$t('footer.info.three'),
