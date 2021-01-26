@@ -6,7 +6,7 @@
       class="mx-auto my-10 py-4 rounded px-xs-1"
       outlined
     >
-      <p class="text-h3 font-weight-light text-center">
+      <p class="text-h5 text-center">
         {{ category.data.category_name[0].text }}
       </p>
       <v-slide-group show-arrows class="hidden-sm-and-down">
