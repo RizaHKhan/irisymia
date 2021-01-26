@@ -1,10 +1,6 @@
 <template>
   <transition name="fade">
-    <v-card
-      class="ma-3 d-flex flex-column justify-space-between grey lighten-5"
-      max-width="450"
-      width="100%"
-    >
+    <v-card class="ma-3 grey lighten-3" max-width="450" width="100%" outlined>
       <nuxt-link :to="`/${categoryuid}/${product.uid}`">
         <v-img height="250px" :src="product.data.image.url"> </v-img>
 

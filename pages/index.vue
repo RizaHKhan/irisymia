@@ -4,7 +4,7 @@
       v-for="category in categories"
       :key="category.id"
       class="mx-auto my-10 py-4 rounded px-xs-1"
-      elevation="8"
+      outlined
     >
       <p class="text-h3 font-weight-light text-center">
         {{ category.data.category_name[0].text }}

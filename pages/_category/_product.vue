@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="my-10">
       <v-col cols="12" md="6">
-        <v-card rounded>
+        <v-card outlined>
           <v-img
             :src="product.data.gallery[imagePosition].image1.url"
             height="400"
@@ -21,7 +21,13 @@
             :key="i"
             v-slot="{ active, toggle }"
           >
-            <v-card class="ma-4" height="100" width="100" @click="toggle">
+            <v-card
+              outlined
+              class="ma-4"
+              height="100"
+              width="100"
+              @click="toggle"
+            >
               <v-img :src="image.image1.url" height="100%"> </v-img>
             </v-card>
           </v-slide-item>
@@ -50,7 +56,7 @@
         <p class="text-h4 font-weight-light">${{ product.data.price }}</p>
         <p class="body-1">{{ product.data.description[0].text }}</p>
         <v-layout column wrap>
-          <DatePicker />
+          <DatePicker @setdate="setDeliveryDate" />
           <AddToCartButton :product="product" />
         </v-layout>
       </v-col>
@@ -62,27 +68,29 @@
         </p>
       </v-col>
       <v-col>
-        <v-slide-group show-arrows class="hidden-sm-and-down">
-          <v-slide-item
-            v-for="product in products"
-            :key="product.id"
-            class="my-2"
-          >
+        <v-sheet outlined>
+          <v-slide-group show-arrows class="hidden-sm-and-down" outlined>
+            <v-slide-item
+              v-for="product in products"
+              :key="product.id"
+              class="my-2"
+            >
+              <ProductCard
+                :product="product"
+                :categoryuid="$route.params.category"
+              />
+            </v-slide-item>
+          </v-slide-group>
+          <v-layout wrap class="hidden-md-and-up">
             <ProductCard
+              v-for="product in products"
+              :key="product.id"
+              class="mx-auto"
               :product="product"
               :categoryuid="$route.params.category"
             />
-          </v-slide-item>
-        </v-slide-group>
-        <v-layout wrap class="hidden-md-and-up">
-          <ProductCard
-            v-for="product in products"
-            :key="product.id"
-            class="mx-auto"
-            :product="product"
-            :categoryuid="$route.params.category"
-          />
-        </v-layout>
+          </v-layout>
+        </v-sheet>
       </v-col>
     </v-row>
   </v-container>
@@ -125,6 +133,7 @@ export default {
   data() {
     return {
       imagePosition: 0,
+      deliveryDate: null,
     }
   },
   computed: {
@@ -139,6 +148,10 @@ export default {
     }),
     goToCategory(category) {
       this.$router.push(`/${category}`)
+    },
+    setDeliveryDate(val) {
+      console.log('va', val)
+      this.deliveryDate = val
     },
   },
   /* head() { */

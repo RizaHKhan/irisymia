@@ -25,7 +25,6 @@
 export default {
   data() {
     return {
-      date: null,
       dialog: false,
       picker: new Date().toISOString().substr(0, 10),
       removeDates: ['2021-01-29', '2021-02-5'],
@@ -41,6 +40,11 @@ export default {
       return c.toISOString().substr(0, 10)
     },
   },
+  watch: {
+    picker(newVal, oldVal) {
+      this.$emit('setdate', newVal)
+    },
+  },
   methods: {
     allowedDates(val) {
       const d = new Date(val)
@@ -50,6 +54,9 @@ export default {
         return true
       }
       return false
+    },
+    selected() {
+      console.log('hit')
     },
   },
 }
