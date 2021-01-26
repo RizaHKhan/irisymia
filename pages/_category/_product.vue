@@ -26,6 +26,13 @@
             </v-card>
           </v-slide-item>
         </v-slide-group>
+        <v-divider></v-divider>
+        <v-layout wrap>
+          <v-col cols="12">
+            <p class="text-h5 font-weight-light">Reviews</p>
+          </v-col>
+          <Review v-for="n in 5" :key="n" :num="n" />
+        </v-layout>
       </v-col>
       <v-col cols="12" md="6">
         <p class="text-h3 font-weight-light mb-0">
@@ -85,11 +92,13 @@
 import { mapGetters, mapMutations } from 'vuex'
 import AddToCartButton from '@/components/AddToCartButton'
 import DatePicker from '@/components/DatePicker'
+import Review from '@/components/Review'
 
 export default {
   components: {
     AddToCartButton,
     DatePicker,
+    Review,
   },
   async asyncData({ params, store, redirect }) {
     try {
