@@ -8,7 +8,7 @@
       <nuxt-link :to="`/${categoryuid}/${product.uid}`">
         <v-img height="250px" :src="product.data.image.url"> </v-img>
 
-        <v-row class="d-flex px-2 justify-space-between">
+        <v-row class="d-flex px-2 justify-space-between mt-5 mb-0">
           <v-card-title class="text-h5 font-weight-light black--text">{{
             product.data.name[0].text
           }}</v-card-title>
@@ -17,8 +17,8 @@
           >
         </v-row>
 
-        <v-card-text class="text--primary mt-2">
-          <div>{{ product.data.description[0].text }}</div>
+        <v-card-text class="text--primary mt-2 pt-0">
+          <p class="text-body2">{{ product.data.description[0].text }}</p>
         </v-card-text>
       </nuxt-link>
     </v-card>
