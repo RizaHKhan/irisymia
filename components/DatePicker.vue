@@ -8,7 +8,9 @@
         dark
         v-bind="attrs"
         v-on="on"
-        >{{ $t('date-picker.delivery-date') }}</v-btn
+      >
+        <v-icon left>mdi-calendar</v-icon>
+        {{ $t('date-picker.delivery-date') }}</v-btn
       >
     </template>
     <v-card>
@@ -61,5 +63,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

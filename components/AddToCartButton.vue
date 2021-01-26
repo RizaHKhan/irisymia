@@ -6,7 +6,10 @@
     :data-item-name="product.data.name[0].text"
     :data-item-price="product.data.price"
     :data-item-url="product.href"
-    >{{ $t('button.add-to-cart') }}</v-btn
+  >
+    <v-icon left>mdi-cart</v-icon>
+
+    {{ $t('button.add-to-cart') }}</v-btn
   >
 </template>
 

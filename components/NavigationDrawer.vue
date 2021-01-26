@@ -6,30 +6,28 @@
     fixed
     temporary
   >
-    <v-list>
-      <v-subheader>{{ $t('navigation-drawer.categories') }}</v-subheader>
-      <v-list-item v-for="(category, i) in categories" :key="i" link>
-        <v-list-item-content>
-          <nuxt-link :to="`/${category.uid}`">
-            <v-list-item-title class="black--text">{{
-              category.data.category_name[0].text
-            }}</v-list-item-title>
-          </nuxt-link>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-    <v-divider></v-divider>
-    <v-list>
-      <v-list-item link>
-        <v-list-item-content>
-          <nuxt-link :to="`/blog`">
-            <v-list-item-title class="black--text">
-              {{ $t('blog.title') }}
-            </v-list-item-title>
-          </nuxt-link>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+    <p class="text--disabled text-center mt-2">
+      {{ $t('navigation-drawer.categories') }}
+    </p>
+    <v-layout column>
+      <v-btn
+        v-for="(category, i) in categories"
+        :key="i"
+        class="ma-2"
+        depressed
+        :to="`/${category.uid}`"
+      >
+        <v-icon left>mdi-calendar</v-icon>
+        {{ category.data.category_name[0].text }}
+      </v-btn>
+    </v-layout>
+
+    <v-divider class="my-5"></v-divider>
+    <v-layout column>
+      <v-btn class="ma-2" depressed to="/blog">
+        {{ $t('blog.title') }}
+      </v-btn>
+    </v-layout>
   </v-navigation-drawer>
 </template>
 
