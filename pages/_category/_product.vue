@@ -53,7 +53,7 @@
           @click="goToCategory(product.data.category.uid)"
           >{{ product.data.category.uid }}</v-btn
         >
-        <p class="text-h4 font-weight-light">${{ product.data.price }}</p>
+        <p class="text-h4 font-weight-light">€{{ product.data.price }}</p>
         <p class="body-1">{{ product.data.description[0].text }}</p>
         <v-layout column wrap>
           <DatePicker @setdate="setDeliveryDate" />
@@ -150,7 +150,6 @@ export default {
       this.$router.push(`/${category}`)
     },
     setDeliveryDate(val) {
-      console.log('va', val)
       this.deliveryDate = val
     },
   },

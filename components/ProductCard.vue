@@ -9,7 +9,7 @@
             product.data.name[0].text
           }}</v-card-title>
           <v-card-title class="text-h5 black--text"
-            >${{ product.data.price }}</v-card-title
+            >€{{ product.data.price }}</v-card-title
           >
         </v-row>
 

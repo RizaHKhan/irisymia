@@ -57,9 +57,6 @@ export default {
       }
       return false
     },
-    selected() {
-      console.log('hit')
-    },
   },
 }
 </script>
