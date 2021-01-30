@@ -18,15 +18,15 @@
     <Cart />
     <template v-if="showTemplate" v-slot:extension>
       <v-row class="justify-center hidden-md-and-down">
-        <nuxt-link
+        <v-btn
           v-for="(category, index) in categories"
           :key="index"
           :to="`/${category.uid}`"
+          small
+          text
+          class="mx-1"
+          >{{ category.data.category_name[0].text }}</v-btn
         >
-          <v-btn small text class="mx-1">{{
-            category.data.category_name[0].text
-          }}</v-btn>
-        </nuxt-link>
       </v-row>
     </template>
   </v-app-bar>

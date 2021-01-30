@@ -60,7 +60,10 @@ export const actions = {
       throw e // this allows us to hit the catch block in asyncData
     }
   },
-  async GET_PRODUCT_BY_UID_AND_CATEGORY({ commit }, { category, product }) {
+  async GET_PRODUCT_BY_UID_AND_CATEGORY(
+    { commit, dispatch },
+    { category, product }
+  ) {
     try {
       commit('ui/LOADING_TRUE', null, { root: true })
       commit('WIPE_PRODUCT')
@@ -72,6 +75,16 @@ export const actions = {
       if (results[0].data.category.uid !== category) {
         throw new Error('Item not available category')
       }
+
+      const customFieldIDs = results[0].data.customization_fields.map(
+        (field) => field.field_type.id
+      )
+
+      await dispatch(
+        'customization_fields/GET_PRODUCT_CUSTOM_FIELDS',
+        customFieldIDs,
+        { root: true }
+      )
 
       commit('SET_PRODUCT', results[0])
       commit('ui/LOADING_FALSE', null, { root: true })

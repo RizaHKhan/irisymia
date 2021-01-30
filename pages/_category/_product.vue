@@ -58,7 +58,13 @@
         <v-layout column wrap>
           <DatePicker @setdate="setDeliveryDate" />
           <AddToCartButton :product="product" />
+          <component
+            :is="getComponentName(field.response_input_type)"
+            v-for="(field, i) in custom_fields"
+            :key="i"
+          ></component>
         </v-layout>
+        <pre>{{ custom_fields }}</pre>
       </v-col>
     </v-row>
     <v-row class="mb-5">
@@ -140,7 +146,14 @@ export default {
     ...mapGetters({
       product: 'products/GET_PRODUCT',
       products: 'products/GET_PRODUCTS',
+      custom_fields: 'customization_fields/GET_CUSTOM_FIELDS',
     }),
+    checkBoxText() {
+      return () => import('@/components/custom_fields/CheckBoxText.vue')
+    },
+    textArea() {
+      return () => import('@/components/custom_fields/TextArea.vue')
+    },
   },
   methods: {
     ...mapMutations({
@@ -151,6 +164,16 @@ export default {
     },
     setDeliveryDate(val) {
       this.deliveryDate = val
+    },
+    getComponentName(name) {
+      switch (name) {
+        case 'checkbox text':
+          return this.checkBoxText
+        case 'textarea':
+          return this.textArea
+        default:
+          break
+      }
     },
   },
   /* head() { */
