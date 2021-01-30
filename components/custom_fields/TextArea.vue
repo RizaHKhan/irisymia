@@ -1,8 +1,17 @@
 <template>
-  <v-card outlined class="mt-2">
-    <v-card-title>{{ question }}</v-card-title>
-    <v-card-text>
-      <v-textarea v-model="answer" :rules="rules" label="Answer"></v-textarea>
+  <v-card outlined class="ma-2 d-flex flex-column" max-width="350">
+    <v-card-title class="text-h6 font-weight-light">{{
+      question
+    }}</v-card-title>
+    <v-card-text class="flex-grow-1">
+      <v-textarea
+        v-model="answer"
+        filled
+        outlined
+        no-resize
+        :rules="rules"
+        :label="$t('text-area.message')"
+      ></v-textarea>
     </v-card-text>
   </v-card>
 </template>

@@ -33,7 +33,7 @@
           </v-slide-item>
         </v-slide-group>
         <v-divider></v-divider>
-        <v-layout wrap>
+        <v-layout wrap v-if="false">
           <v-col cols="12">
             <p class="text-h5 font-weight-light">Reviews</p>
           </v-col>
@@ -53,11 +53,9 @@
           @click="goToCategory(product.data.category.uid)"
           >{{ product.data.category.uid }}</v-btn
         >
-        <p class="text-h4 font-weight-light">€{{ product.data.price }}</p>
-        <p class="body-1">{{ product.data.description[0].text }}</p>
-        <v-layout column wrap>
-          <DatePicker @setdate="setDeliveryDate" />
-          <AddToCartButton :product="product" />
+        <p class="text-h5 font-weight-light">€{{ product.data.price }}</p>
+        <p class="text-body-2">{{ product.data.description[0].text }}</p>
+        <v-layout wrap>
           <component
             :is="getComponentName(field.response_input_type)"
             v-for="(field, i) in custom_fields"
@@ -68,6 +66,7 @@
             :max-selections="field.max_number_of_options_selected"
           ></component>
         </v-layout>
+        <AddToCartButton :product="product" />
       </v-col>
     </v-row>
     <v-row class="mb-5">
@@ -108,13 +107,11 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import AddToCartButton from '@/components/AddToCartButton'
-import DatePicker from '@/components/DatePicker'
 import Review from '@/components/Review'
 
 export default {
   components: {
     AddToCartButton,
-    DatePicker,
     Review,
   },
   async asyncData({ params, store, redirect }) {
@@ -157,6 +154,9 @@ export default {
     textArea() {
       return () => import('@/components/custom_fields/TextArea.vue')
     },
+    datePicker() {
+      return () => import('@/components/custom_fields/DatePicker.vue')
+    },
   },
   methods: {
     ...mapMutations({
@@ -174,6 +174,8 @@ export default {
           return this.checkBoxText
         case 'textarea':
           return this.textArea
+        case 'date picker':
+          return this.datePicker
         default:
           break
       }

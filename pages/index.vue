@@ -22,7 +22,9 @@
       </v-slide-group>
       <v-layout wrap class="hidden-md-and-up pa-2">
         <ProductCard
-          v-for="product in products"
+          v-for="product in products.filter(
+            (product) => product.data.category.id === category.id
+          )"
           :key="product.id"
           class="mx-auto"
           :product="product"

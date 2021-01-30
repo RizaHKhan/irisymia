@@ -52,5 +52,8 @@
   },
   "date-picker": {
     "delivery-date": "Delivery Date"
+  },
+  "text-area": {
+    "message": "Message"
   }
 }

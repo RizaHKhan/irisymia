@@ -1,33 +1,28 @@
 <template>
-  <v-dialog v-model="dialog" scrollable max-width="300px">
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        depressed
-        class="ml-auto my-1"
-        color="primary"
-        dark
-        v-bind="attrs"
-        v-on="on"
-      >
-        <v-icon left>mdi-calendar</v-icon>
-        {{ $t('date-picker.delivery-date') }}</v-btn
-      >
-    </template>
-    <v-card>
-      <v-date-picker
-        v-model="picker"
-        :allowed-dates="allowedDates"
-        :max="yearFromNow"
-      ></v-date-picker>
-    </v-card>
-  </v-dialog>
+  <v-card class="ma-2" outlined max-width="350">
+    <v-card-title class="text-h6 font-weight-light">{{
+      question
+    }}</v-card-title>
+    <v-date-picker
+      v-model="picker"
+      width="100%"
+      :allowed-dates="allowedDates"
+      :max="yearFromNow"
+      :min="currentMonth"
+    ></v-date-picker>
+  </v-card>
 </template>
 
 <script>
 export default {
+  props: {
+    question: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
-      dialog: false,
       picker: new Date().toISOString().substr(0, 10),
       removeDates: ['2021-01-29', '2021-02-5'],
     }
@@ -41,6 +36,14 @@ export default {
       const c = new Date(year + 1, month, day)
       return c.toISOString().substr(0, 10)
     },
+    currentMonth() {
+      const d = new Date()
+      const year = d.getFullYear()
+      const month = d.getMonth()
+      const day = d.getDate()
+      const c = new Date(year, month, day)
+      return c.toISOString().substr(0, 10)
+    },
   },
   watch: {
     picker(newVal, oldVal) {
@@ -51,7 +54,7 @@ export default {
     allowedDates(val) {
       const d = new Date(val)
       const today = new Date()
-      const tomorrow = today.setDate(today.getDate() + 1)
+      const tomorrow = today.setDate(today.getDate() + 2)
       if (d > tomorrow && !this.removeDates.includes(val)) {
         return true
       }
