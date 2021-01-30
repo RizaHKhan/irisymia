@@ -1,18 +1,20 @@
 <template>
   <v-card outlined class="mt-2">
-    <v-card-title>This is a question</v-card-title>
+    <v-card-title>{{ question }}</v-card-title>
     <v-card-actions class="d-flex flex-column">
       <v-checkbox
-        v-model="selected"
-        label="John"
-        value="John"
+        v-for="(option, i) in options"
+        :key="i"
+        v-model="selections"
+        :label="option.option"
+        :value="option.option"
         class="mr-auto my-0"
-      ></v-checkbox>
-      <v-checkbox
-        v-model="selected"
-        label="Jacob"
-        value="Jacob"
-        class="mr-auto my-0"
+        :disabled="
+          selections.length >= maxSelections &&
+          !selections.includes(option.option)
+            ? true
+            : false
+        "
       ></v-checkbox>
     </v-card-actions>
   </v-card>
@@ -20,10 +22,23 @@
 
 <script>
 export default {
-  name: 'CheckBoxText',
+  props: {
+    question: {
+      type: String,
+      required: true,
+    },
+    options: {
+      type: Array,
+      required: true,
+    },
+    maxSelections: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
-      selected: ['John'],
+      selections: [],
     }
   },
 }

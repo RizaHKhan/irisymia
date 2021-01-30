@@ -1,6 +1,6 @@
 <template>
   <v-card outlined class="mt-2">
-    <v-card-title>This is a question</v-card-title>
+    <v-card-title>{{ question }}</v-card-title>
     <v-card-text>
       <v-textarea></v-textarea>
     </v-card-text>
@@ -10,6 +10,12 @@
 <script>
 export default {
   name: 'CheckBoxText',
+  props: {
+    question: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       selected: ['John'],

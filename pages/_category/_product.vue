@@ -62,6 +62,9 @@
             :is="getComponentName(field.response_input_type)"
             v-for="(field, i) in custom_fields"
             :key="i"
+            :options="field.response_options"
+            :question="field.question_text"
+            :max-selections="field.max_number_of_options_selected"
           ></component>
         </v-layout>
         <pre>{{ custom_fields }}</pre>
