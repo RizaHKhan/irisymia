@@ -9,6 +9,7 @@
       :allowed-dates="allowedDates"
       :max="yearFromNow"
       :min="currentMonth"
+      class="rounded-0"
     ></v-date-picker>
   </v-card>
 </template>
