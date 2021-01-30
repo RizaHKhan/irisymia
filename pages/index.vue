@@ -43,7 +43,7 @@ export default {
   components: {
     ProductCard,
   },
-  async asyncData({ store, app }) {
+  async asyncData({ store, app, $notify }) {
     try {
       await store.dispatch('categories/GET_CATEGORIES')
       const categories = store.getters['categories/GET_CATEGORIES']
@@ -53,7 +53,7 @@ export default {
         }),
       })
     } catch (e) {
-      store.commit('ui/ADD_MESSAGE_TO_SNACKBAR', {
+      $notify.showMessage({
         message: app.i18n.t('snackbar.server-error'),
         color: 'red',
       })

@@ -17,7 +17,7 @@ export default {
     ],
   },
   css: ['~/assets/snipcartStyleSheet.scss'],
-  plugins: [],
+  plugins: ['~/plugins/notify.js'],
   components: true,
   buildModules: [
     '@nuxtjs/eslint-module',
