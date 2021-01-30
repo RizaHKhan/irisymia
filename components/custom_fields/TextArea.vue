@@ -2,7 +2,7 @@
   <v-card outlined class="mt-2">
     <v-card-title>{{ question }}</v-card-title>
     <v-card-text>
-      <v-textarea></v-textarea>
+      <v-textarea v-model="answer" :rules="rules" label="Answer"></v-textarea>
     </v-card-text>
   </v-card>
 </template>
@@ -15,10 +15,20 @@ export default {
       type: String,
       required: true,
     },
+    maxCharacters: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
-      selected: ['John'],
+      valid: false,
+      answer: '',
+      rules: [
+        (v) =>
+          v.length <= this.maxCharacters ||
+          `You cannot have more then ${this.maxCharacters}`,
+      ],
     }
   },
 }

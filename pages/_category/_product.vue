@@ -64,10 +64,10 @@
             :key="i"
             :options="field.response_options"
             :question="field.question_text"
+            :max-characters="field.max_number_of_characters"
             :max-selections="field.max_number_of_options_selected"
           ></component>
         </v-layout>
-        <pre>{{ custom_fields }}</pre>
       </v-col>
     </v-row>
     <v-row class="mb-5">
