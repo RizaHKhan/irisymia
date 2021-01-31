@@ -6,7 +6,8 @@
     "navigate": {
       "title": "Navigate",
       "blog": "Blog",
-      "sitemap": "Sitemap"
+      "sitemap": "Sitemap",
+      "contact": "Contact"
     },
     "categories": {
       "title": "Categories"
@@ -55,5 +56,13 @@
   },
   "text-area": {
     "message": "Message"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "textarea-label": "Comments/Questions"
+  },
+  "error": {
+    "email": "Email is required",
+    "comment": "Comment/Question is required"
   }
 }
