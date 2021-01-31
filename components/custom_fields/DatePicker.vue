@@ -10,6 +10,7 @@
       :max="yearFromNow"
       :min="currentMonth"
       class="rounded-0"
+      @input="$emit('input', picker)"
     ></v-date-picker>
   </v-card>
 </template>

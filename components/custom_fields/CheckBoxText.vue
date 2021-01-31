@@ -17,6 +17,7 @@
             ? true
             : false
         "
+        @change="$emit('input', selections)"
       ></v-checkbox>
     </v-card-actions>
   </v-card>

@@ -33,7 +33,7 @@
           </v-slide-item>
         </v-slide-group>
         <v-divider></v-divider>
-        <v-layout wrap v-if="false">
+        <v-layout v-if="false" wrap>
           <v-col cols="12">
             <p class="text-h5 font-weight-light">Reviews</p>
           </v-col>
@@ -64,9 +64,14 @@
             :question="field.question_text"
             :max-characters="field.max_number_of_characters"
             :max-selections="field.max_number_of_options_selected"
+            @input="testOutput($event, i)"
           ></component>
         </v-layout>
-        <AddToCartButton :product="product" />
+        <AddToCartButton
+          :product="product"
+          :custominputs="cartCustomFields"
+          :customfields="custom_fields"
+        />
       </v-col>
     </v-row>
     <v-row class="mb-5">
@@ -140,6 +145,7 @@ export default {
     return {
       imagePosition: 0,
       deliveryDate: null,
+      cartCustomFields: {},
     }
   },
   computed: {
@@ -179,6 +185,11 @@ export default {
         default:
           break
       }
+    },
+    testOutput(value, index) {
+      const obj = {}
+      obj[index] = value
+      this.cartCustomFields = Object.assign({}, this.cartCustomFields, obj)
     },
   },
   /* head() { */

@@ -11,6 +11,7 @@
         no-resize
         :rules="rules"
         :label="$t('text-area.message')"
+        @input="$emit('input', answer)"
       ></v-textarea>
     </v-card-text>
   </v-card>
