@@ -55,7 +55,7 @@
         >
         <p class="text-h5 font-weight-light">€{{ product.data.price }}</p>
         <p class="text-body-2">{{ product.data.description[0].text }}</p>
-        <v-layout wrap>
+        <v-layout wrap class="justify-start">
           <component
             :is="getComponentName(field.response_input_type)"
             v-for="(field, i) in custom_fields"

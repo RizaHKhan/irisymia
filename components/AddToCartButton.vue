@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <pre>{{ customfields }}</pre>
-    <v-btn
-      class="snipcart-add-item success ml-auto my-1"
-      depressed
-      v-bind="snipCartObj"
-    >
-      <v-icon left>mdi-cart</v-icon>
+  <v-btn
+    class="snipcart-add-item success ml-2 my-1 mr-auto"
+    depressed
+    v-bind="snipCartObj"
+  >
+    <v-icon left>mdi-cart</v-icon>
 
-      {{ $t('button.add-to-cart') }}</v-btn
-    >
-  </div>
+    {{ $t('button.add-to-cart') }}</v-btn
+  >
 </template>
 
 <script>
@@ -58,7 +55,10 @@ export default {
         let type = ''
         switch (field.response_input_type) {
           case 'checkbox text':
-            type = 'checkbox'
+            type = 'checkbox text'
+            break
+          case 'textarea':
+            type = 'textarea'
             break
           default:
             break
@@ -70,7 +70,7 @@ export default {
 
         Object.assign(obj, typeObj)
 
-        if (field.response_options.length) {
+        if (field.response_options.length >= 1) {
           const arr = []
           field.response_options.forEach((option) => {
             arr.push(option.option)
@@ -84,7 +84,11 @@ export default {
         }
 
         const valueObj = {
-          ['data-item-custom' + (i + 1) + '-value']: this.custominputs[i],
+          ['data-item-custom' + (i + 1) + '-value']: Array.isArray(
+            this.custominputs[i]
+          )
+            ? this.custominputs[i].join('|')
+            : this.custominputs[i],
         }
         Object.assign(obj, valueObj)
       })
