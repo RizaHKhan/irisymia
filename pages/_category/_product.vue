@@ -107,7 +107,6 @@
         </v-sheet>
       </v-col>
     </v-row>
-    <pre>{{ dates_not_deliverable }}</pre>
   </v-container>
 </template>
 

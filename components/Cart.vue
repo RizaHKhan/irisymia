@@ -7,14 +7,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
   data() {
     return {
       Snipcart: null,
       cartLength: 0,
-      addItemEvent: null,
     }
   },
   mounted() {
@@ -25,15 +22,8 @@ export default {
         this.Snipcart?.store.subscribe(() => {
           this.cartLength = this.Snipcart.store.getState().cart.items.count
         })
-
-        this.addItemEvent = window.Snipcart.events.on('item.added', () => {
-          this.$notify.showMessage({
-            message: 'Item added to cart successfully',
-            color: 'green',
-          })
-        })
       } catch (e) {
-        this.addSnackbarMessage({
+        this.$notify.showMessage({
           message: this.$t('snackbar.server-error'),
           color: 'red',
         })
@@ -42,12 +32,8 @@ export default {
   },
   beforeDestroy() {
     document.removeEventListener('snipcart.ready')
-    this.addItemEvent.unsubscribe()
   },
   methods: {
-    ...mapMutations({
-      addSnackbarMessage: 'ui/ADD_MESSAGE_TO_SNACKBAR',
-    }),
     openCart() {
       this.Snipcart?.api.theme.cart.open()
     },

@@ -2,10 +2,12 @@
   <v-btn
     class="snipcart-add-item success ml-2 my-1 mr-auto"
     depressed
-    v-bind="snipCartObj"
+    v-bind="{
+      ...$snipcart.customfields(customFieldsArray),
+      ...$snipcart.bindProduct(productObj),
+    }"
   >
     <v-icon left>mdi-cart</v-icon>
-
     {{ $t('button.add-to-cart') }}</v-btn
   >
 </template>
@@ -29,79 +31,73 @@ export default {
       default: () => {},
     },
   },
+  data() {
+    return {
+      addItemEvent: null,
+    }
+  },
   computed: {
-    snipCartObj() {
-      const obj = {}
-
-      // Basic requirements for cart
-      Object.assign(obj, { 'data-item-id': this.product.id })
-      Object.assign(obj, { 'data-item-name': this.product.data.name[0].text })
-      Object.assign(obj, { 'data-item-price': this.product.data.price })
-      Object.assign(obj, { 'data-item-url': window.location })
-
-      // Custom Fields
+    productObj() {
+      return {
+        id: this.product.id,
+        price: this.product.data.price,
+        storeUrl: window.location,
+        name: this.product.data.name[0].text,
+      }
+    },
+    customFieldsArray() {
+      const fields = []
       this.customfields.forEach((field, i) => {
-        const nameObj = {
-          ['data-item-custom' + (i + 1) + '-name']: field.question_text,
-        }
-        Object.assign(obj, nameObj)
-
-        const requiredObj = {
-          ['data-item-custom' + (i + 1) + '-required']: field.required,
-        }
-
-        Object.assign(obj, requiredObj)
-
-        let type = ''
-        switch (field.response_input_type) {
-          case 'checkbox text':
-            type = 'checkbox text'
-            break
-          case 'textarea':
-            type = 'textarea'
-            break
-          default:
-            break
-        }
-
-        const typeObj = {
-          ['data-item-custom' + (i + 1) + '-type']: type,
-        }
-
-        Object.assign(obj, typeObj)
-
-        if (field.response_options.length >= 1) {
-          const arr = []
-          field.response_options.forEach((option) => {
-            arr.push(option.option)
-          })
-
-          const optionsObj = {
-            ['data-item-custom' + (i + 1) + '-options']: arr.join('|'),
-          }
-
-          Object.assign(obj, optionsObj)
-        }
-
-        const valueObj = {
-          ['data-item-custom' + (i + 1) + '-value']: Array.isArray(
-            this.custominputs[i]
-          )
-            ? this.custominputs[i].join('|')
+        fields.push({
+          name: field.question_text,
+          required: field.required,
+          /* options: */
+          /*   field.response_options.length > 1 */
+          /*     ? field.response_options.map((i) => i.option).join('|') */
+          /*     : null, */
+          value: Array.isArray(this.custominputs[i])
+            ? this.custominputs[i].join(', ')
             : this.custominputs[i],
-        }
-        Object.assign(obj, valueObj)
+          type: 'readonly',
+          /* type: this.determineType(field.response_input_type), */
+        })
       })
 
-      return obj
+      return fields
     },
   },
+  mounted() {
+    document.addEventListener('snipcart.ready', () => {
+      try {
+        this.addItemEvent = window.Snipcart.events.on('item.added', (item) => {
+          console.log(item)
+          this.$notify.showMessage({
+            message: 'Item added to cart successfully',
+            color: 'green',
+          })
+        })
+      } catch (e) {
+        this.$notify.showMessage({
+          message: this.$t('snackbar.server-error'),
+          color: 'red',
+        })
+      }
+    })
+  },
+  beforeDestroy() {
+    document.removeEventListener('snipcart.ready')
+    this.addItemEvent.unsubscribe()
+  },
   methods: {
-    itemAddedToCart() {
-      this.$notify.showMessage({
-        message: 'Item added to cart',
-        color: 'green',
-      })
+    determineType(type) {
+      switch (type) {
+        case 'textarea':
+          return 'textarea'
+        case 'checkbox text':
+          return 'checkbox'
+        default:
+          return null
+      }
     },
   },
 }
