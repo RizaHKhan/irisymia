@@ -64,7 +64,10 @@ export default {
   },
   data() {
     return {
-      navigate: [{ title: this.$t('footer.navigate.blog'), link: '/blog' }],
+      navigate: [
+        { title: this.$t('footer.navigate.blog'), link: '/blog' },
+        { title: this.$t('footer.navigate.contact'), link: '/contact' },
+      ],
       info: [
         {
           title: this.$t('footer.info.one'),
