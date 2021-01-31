@@ -14,14 +14,23 @@ export default {
     return {
       Snipcart: null,
       cartLength: 0,
+      addItemEvent: null,
     }
   },
   mounted() {
     document.addEventListener('snipcart.ready', () => {
       try {
         this.Snipcart = window.Snipcart
+
         this.Snipcart?.store.subscribe(() => {
           this.cartLength = this.Snipcart.store.getState().cart.items.count
+        })
+
+        this.addItemEvent = window.Snipcart.events.on('item.added', () => {
+          this.$notify.showMessage({
+            message: 'Item added to cart successfully',
+            color: 'green',
+          })
         })
       } catch (e) {
         this.addSnackbarMessage({
@@ -33,6 +42,7 @@ export default {
   },
   beforeDestroy() {
     document.removeEventListener('snipcart.ready')
+    this.addItemEvent.unsubscribe()
   },
   methods: {
     ...mapMutations({
