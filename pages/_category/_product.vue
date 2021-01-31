@@ -64,7 +64,7 @@
             :question="field.question_text"
             :max-characters="field.max_number_of_characters"
             :max-selections="field.max_number_of_options_selected"
-            @input="testOutput($event, i)"
+            @input="inputToObject($event, i)"
           ></component>
         </v-layout>
         <AddToCartButton
@@ -186,7 +186,7 @@ export default {
           break
       }
     },
-    testOutput(value, index) {
+    inputToObject(value, index) {
       const obj = {}
       obj[index] = value
       this.cartCustomFields = Object.assign({}, this.cartCustomFields, obj)
