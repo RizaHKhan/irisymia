@@ -2,6 +2,7 @@
   <v-btn
     class="snipcart-add-item success ml-2 my-1 mr-auto"
     depressed
+    :disabled="isDisabled"
     v-bind="{
       ...$snipcart.customfields(customFieldsArray),
       ...$snipcart.bindProduct(productObj),
@@ -37,6 +38,22 @@ export default {
     }
   },
   computed: {
+    isDisabled() {
+      let isDisabled = false
+
+      this.customfields.forEach((field, i) => {
+        if (field.required) {
+          if (
+            (!this.custominputs[i] && this.custominputs[i] !== '') ||
+            this.custominputs[i].length === 0
+          ) {
+            isDisabled = true
+          }
+        }
+      })
+
+      return isDisabled
+    },
     productObj() {
       return {
         id: this.product.id,
@@ -48,19 +65,21 @@ export default {
     customFieldsArray() {
       const fields = []
       this.customfields.forEach((field, i) => {
-        fields.push({
-          name: field.question_text,
-          required: field.required,
-          /* options: */
-          /*   field.response_options.length > 1 */
-          /*     ? field.response_options.map((i) => i.option).join('|') */
-          /*     : null, */
-          value: Array.isArray(this.custominputs[i])
-            ? this.custominputs[i].join(', ')
-            : this.custominputs[i],
-          type: 'readonly',
-          /* type: this.determineType(field.response_input_type), */
-        })
+        if (this.custominputs[i]) {
+          fields.push({
+            name: field.question_text,
+            required: field.required,
+            /* options: */
+            /*   field.response_options.length > 1 */
+            /*     ? field.response_options.map((i) => i.option).join('|') */
+            /*     : null, */
+            value: Array.isArray(this.custominputs[i])
+              ? this.custominputs[i].join(', ')
+              : this.custominputs[i],
+            type: 'readonly',
+            /* type: this.determineType(field.response_input_type), */
+          })
+        }
       })
 
       return fields
@@ -70,7 +89,6 @@ export default {
     document.addEventListener('snipcart.ready', () => {
       try {
         this.addItemEvent = window.Snipcart.events.on('item.added', (item) => {
-          console.log(item)
           this.$notify.showMessage({
             message: 'Item added to cart successfully',
             color: 'green',
@@ -84,10 +102,10 @@ export default {
       }
     })
   },
-  beforeDestroy() {
-    document.removeEventListener('snipcart.ready')
-    this.addItemEvent.unsubscribe()
-  },
+  /* destroy() { */
+  /*   document.removeEventListener('snipcart.ready') */
+  /*   this.addItemEvent.unsubscribe() */
+  /* }, */
   methods: {
     determineType(type) {
       switch (type) {

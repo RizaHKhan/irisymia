@@ -33,6 +33,7 @@
           </v-slide-item>
         </v-slide-group>
         <v-divider></v-divider>
+        <pre>{{ custom_fields.map((field) => field.required) }}</pre>
         <v-layout v-if="false" wrap>
           <v-col cols="12">
             <p class="text-h5 font-weight-light">Reviews</p>

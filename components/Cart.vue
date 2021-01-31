@@ -1,44 +1,23 @@
 <template>
-  <v-btn icon absolute right class="ma-0" @click.stop="openCart">
-    <v-badge color="success" :value="cartLength" :content="cartLength" overlap>
-      <v-icon>mdi-cart</v-icon>
-    </v-badge>
+  <v-btn icon absolute right class="ma-0 snipcart-checkout">
+    <v-icon>mdi-cart</v-icon>
+    <span class="snipcart-items-count"></span>
   </v-btn>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      Snipcart: null,
-      cartLength: 0,
-    }
-  },
-  mounted() {
-    document.addEventListener('snipcart.ready', () => {
-      try {
-        this.Snipcart = window.Snipcart
+<style scoped lang="scss">
+.snipcart-checkout {
+  position: relative;
 
-        this.Snipcart?.store.subscribe(() => {
-          this.cartLength = this.Snipcart.store.getState().cart.items.count
-        })
-      } catch (e) {
-        this.$notify.showMessage({
-          message: this.$t('snackbar.server-error'),
-          color: 'red',
-        })
-      }
-    })
-  },
-  beforeDestroy() {
-    document.removeEventListener('snipcart.ready')
-  },
-  methods: {
-    openCart() {
-      this.Snipcart?.api.theme.cart.open()
-    },
-  },
+  .snipcart-items-count {
+    position: absolute;
+    top: -0.6rem;
+    right: 0;
+    border-radius: 50%;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 0.2rem;
+    font-size: 0.75rem;
+  }
 }
-</script>
-
-<style></style>
+</style>
