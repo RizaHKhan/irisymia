@@ -44,7 +44,7 @@ export default {
         },
       },
     },
-    snipcartCustomize: path.join(__dirname, './plugins/snipcartTemplate'),
+    // snipcartCustomize: path.join(__dirname, './plugins/snipcartTemplate'),
   },
   i18n: {
     locales: ['es'],

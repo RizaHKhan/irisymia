@@ -20,6 +20,7 @@ export default {
     document.addEventListener('snipcart.ready', () => {
       try {
         this.Snipcart = window.Snipcart
+        console.log(window.Snipcart)
         this.Snipcart?.store.subscribe(() => {
           this.cartLength = this.Snipcart.store.getState().cart.items.count
         })

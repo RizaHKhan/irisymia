@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pre>{{ custominputs }}</pre>
     <pre>{{ customfields }}</pre>
     <v-btn
       class="snipcart-add-item success ml-auto my-1"
@@ -55,6 +54,21 @@ export default {
         }
 
         Object.assign(obj, requiredObj)
+
+        let type = ''
+        switch (field.response_input_type) {
+          case 'checkbox text':
+            type = 'checkbox'
+            break
+          default:
+            break
+        }
+
+        const typeObj = {
+          ['data-item-custom' + (i + 1) + '-type']: type,
+        }
+
+        Object.assign(obj, typeObj)
 
         if (field.response_options.length) {
           const arr = []
