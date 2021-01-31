@@ -33,7 +33,6 @@
           </v-slide-item>
         </v-slide-group>
         <v-divider></v-divider>
-        <pre>{{ custom_fields.map((field) => field.required) }}</pre>
         <v-layout v-if="false" wrap>
           <v-col cols="12">
             <p class="text-h5 font-weight-light">Reviews</p>
@@ -42,7 +41,7 @@
         </v-layout>
       </v-col>
       <v-col cols="12" md="6">
-        <p class="text-h3 font-weight-light mb-0">
+        <p :id="product.id" class="text-h3 font-weight-light mb-0">
           {{ product.data.name[0].text }}
         </p>
         <v-btn
@@ -125,6 +124,7 @@ export default {
     try {
       await store.dispatch('general_settings/GET_GENERAL_SETTINGS')
 
+      await store.dispatch('categories/GET_CATEGORIES')
       const categories = store.getters['categories/GET_CATEGORIES'].filter(
         (cat) => {
           return cat.uid === params.category

@@ -14,10 +14,10 @@
         v-for="(category, i) in categories"
         :key="i"
         class="ma-2"
+        text
         depressed
         :to="`/${category.uid}`"
       >
-        <v-icon left>mdi-calendar</v-icon>
         {{ category.data.category_name[0].text }}
       </v-btn>
     </v-layout>
