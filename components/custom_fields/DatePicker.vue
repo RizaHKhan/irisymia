@@ -22,6 +22,11 @@ export default {
       type: String,
       required: true,
     },
+    datesnotdeliverable: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -57,7 +62,11 @@ export default {
       const d = new Date(val)
       const today = new Date()
       const tomorrow = today.setDate(today.getDate() + 2)
-      if (d > tomorrow && !this.removeDates.includes(val)) {
+      if (
+        d > tomorrow &&
+        !this.removeDates.includes(val) &&
+        !this.datesnotdeliverable.includes(val)
+      ) {
         return true
       }
       return false

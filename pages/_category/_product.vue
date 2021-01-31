@@ -64,6 +64,7 @@
             :question="field.question_text"
             :max-characters="field.max_number_of_characters"
             :max-selections="field.max_number_of_options_selected"
+            :datesnotdeliverable="dates_not_deliverable"
             @input="inputToObject($event, i)"
           ></component>
         </v-layout>
@@ -106,6 +107,7 @@
         </v-sheet>
       </v-col>
     </v-row>
+    <pre>{{ dates_not_deliverable }}</pre>
   </v-container>
 </template>
 
@@ -121,6 +123,8 @@ export default {
   },
   async asyncData({ params, store, redirect }) {
     try {
+      await store.dispatch('general_settings/GET_GENERAL_SETTINGS')
+
       const categories = store.getters['categories/GET_CATEGORIES'].filter(
         (cat) => {
           return cat.uid === params.category
@@ -153,6 +157,7 @@ export default {
       product: 'products/GET_PRODUCT',
       products: 'products/GET_PRODUCTS',
       custom_fields: 'customization_fields/GET_CUSTOM_FIELDS',
+      dates_not_deliverable: 'general_settings/GET_DATES_NOT_DELIVERABLE',
     }),
     checkBoxText() {
       return () => import('@/components/custom_fields/CheckBoxText.vue')
