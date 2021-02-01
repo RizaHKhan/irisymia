@@ -41,7 +41,7 @@
         </v-layout>
       </v-col>
       <v-col cols="12" md="6">
-        <p :id="product.id" class="text-h3 font-weight-light mb-0">
+        <p class="text-h3 font-weight-light mb-0">
           {{ product.data.name[0].text }}
         </p>
         <v-btn

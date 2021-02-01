@@ -58,7 +58,7 @@ export default {
       return {
         id: this.product.id,
         price: this.product.data.price,
-        storeUrl: `/${this.$route.params.category}/${this.$route.params.product}`,
+        url: `/${this.$route.params.category}/${this.$route.params.product}`,
         name: this.product.data.name[0].text,
       }
     },
