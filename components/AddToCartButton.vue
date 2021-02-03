@@ -69,15 +69,10 @@ export default {
           fields.push({
             name: field.question_text,
             required: field.required,
-            /* options: */
-            /*   field.response_options.length > 1 */
-            /*     ? field.response_options.map((i) => i.option).join('|') */
-            /*     : null, */
             value: Array.isArray(this.custominputs[i])
               ? this.custominputs[i].join(', ')
               : this.custominputs[i],
             type: 'readonly',
-            /* type: this.determineType(field.response_input_type), */
           })
         }
       })
@@ -102,21 +97,9 @@ export default {
       }
     })
   },
-  /* destroy() { */
-  /*   document.removeEventListener('snipcart.ready') */
-  /*   this.addItemEvent.unsubscribe() */
-  /* }, */
-  methods: {
-    determineType(type) {
-      switch (type) {
-        case 'textarea':
-          return 'textarea'
-        case 'checkbox text':
-          return 'checkbox'
-        default:
-          return null
-      }
-    },
+  beforeDestroy() {
+    document.removeEventListener('snipcart.ready')
+    this.addItemEvent.unsubscribe()
   },
 }
 </script>
