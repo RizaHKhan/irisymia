@@ -98,8 +98,7 @@ export default {
     })
   },
   beforeDestroy() {
-    document.removeEventListener('snipcart.ready')
-    this.addItemEvent.unsubscribe()
+    this.addItemEvent?.unsubscribe()
   },
 }
 </script>

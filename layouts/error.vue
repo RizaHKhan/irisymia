@@ -1,12 +1,11 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
+    <v-container class="mt-5 d-flex flex-column justify-center">
+      <p class="text-h3 font-weight-light text-center">There was an error :(</p>
+      <v-btn class="green mx-auto white--text" depressed to="/"
+        >Take me home</v-btn
+      >
+    </v-container>
   </v-app>
 </template>
 
@@ -19,11 +18,8 @@ export default {
       default: null,
     },
   },
-  data() {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
-    }
+  mounted() {
+    this.$store.commit('ui/LOADING_FALSE')
   },
   head() {
     const title =
